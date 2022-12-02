@@ -1,0 +1,20 @@
+h1{
+  margin-bottom: 0px;
+} 
+
+div{
+  display: flex;
+  flex-direction: row;
+}
+
+div div{
+  flex-direction: column;
+  margin: auto;
+  margin-top: 0px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

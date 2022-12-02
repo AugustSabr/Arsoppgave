@@ -1,0 +1,65 @@
+
+$sql = "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (1, 'stick', 10);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (1, 'boxing gloves', 15);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (1, 'torch', 15);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (1, 'whip', 15);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (1, 'dagger', 20);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (1, 'shield', 20);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (1, 'bat', 25);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (1, 'picaxe', 25);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (2, 'bow', 30);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (2, 'spear', 30);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (2, 'club', 35);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (2, 'crossbow', 40);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (2, 'hammer', 40);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (2, 'axe', 45);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (2, 'sword', 45);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (2, 'ice staff', 50);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (3, 'sickle', 60);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (3, 'fire tome', 65);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (3, 'trident', 70);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (3, 'chainsaw', 85);";
+$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (3, 'exalibur', 100);";
+
+$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (1, 'worn coths', 10);";
+$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (1, 'wooden armor', 15);";
+$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (1, 'cactus armor', 20);";
+$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (2, 'mage robe', 35);";
+$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (2, 'assassin cloak', 40);";
+$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (2, 'gladiator armor', 55);";
+$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (2, 'iron armor', 60);";
+$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (3, 'gold armor', 70);";
+$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (3, 'viking armor', 70);";
+$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (3, 'armor of achilles', 85);";
+
+$sql .= "INSERT INTO Blessings (blessingType, blessingEffect) VALUES ('power', 10);";
+$sql .= "INSERT INTO Blessings (blessingType, blessingEffect) VALUES ('luck', 16);";
+$sql .= "INSERT INTO Blessings (blessingType, blessingEffect) VALUES ('destruction', 210);";
+$sql .= "INSERT INTO Blessings (blessingType, blessingEffect) VALUES ('health', 50);";
+$sql .= "INSERT INTO Blessings (blessingType, blessingEffect) VALUES ('protection', 15);";
+
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (1, 'slime', 50, 10);";
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (1, 'goblin scout', 60, 15);";
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (1, 'wolf', 70, 15);";
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (1, 'dark elf', 80, 20);";
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (1, 'skeleton', 90, 20);";
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (2, 'ghost', 110, 25);";
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (2, 'giant scorpion', 120, 30);";
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (2, 'dark knight', 140, 30);";
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (2, 'wisard', 150, 30);";
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (2, 'witch doctor', 150, 40);";
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (2, 'pharaoh', 160, 40);";
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (2, 'shadow creature', 175, 50);";
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (3, 'orc', 220, 60);";
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (3, 'oger', 250, 70);";
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (3, 'troll', 270, 80);";
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (3, 'minotaur', 285, 90);";
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (3, 'golem', 300, 100);";
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (3, 'cyclops', 315, 100);";
+$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (3, 'frost giant', 330, 100);";
+
+if (mysqli_multi_query($conn, $sql)) {
+  echo "<p>less go</p>";
+} else {
+  echo "Error: " . mysqli_error($conn);
+}
