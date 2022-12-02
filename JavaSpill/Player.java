@@ -127,4 +127,5 @@ public class Player implements Serializable{
     }
   }
 
-  //dept 
+  //dept???
+  //progresjon^?
