@@ -10,7 +10,7 @@ import java.io.FileWriter;
 public class Connect {
 
   // info-en du trenger for å koble til database;
-  String ip = "localhost";
+  String ip = "10.2.2.247";
   String port = "3306";
   String username = "Admin";
   String password = "HmBw1yvcYpkawfFu";
@@ -88,3 +88,5 @@ public class Connect {
     }
   }
 }
+
+
