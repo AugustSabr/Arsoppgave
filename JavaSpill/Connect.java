@@ -10,10 +10,10 @@ import java.io.FileWriter;
 public class Connect {
 
   // info-en du trenger for å koble til database;
-  String ip = "10.2.2.247";
+  String ip = "10.0.0.2";
   String port = "3306";
-  String username = "Admin";
-  String password = "HmBw1yvcYpkawfFu";
+  String username = "Klient";
+  String password = "n]ua2BeXUF!ci[mK";
   String database = "game4";
 
   String[] categories = {"weapon", "armor", "blessing", "enemy"};

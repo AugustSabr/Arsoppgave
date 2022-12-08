@@ -1,4 +1,4 @@
-slime2
+slime
 1
 10
 50
