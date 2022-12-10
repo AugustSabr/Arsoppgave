@@ -5,6 +5,7 @@ TITLE Ignore
 echo downloading game. This will close automatically after downloading all files
 echo(
 
+cd Javaspill/
 javac -d classes src\*.java
 mkdir C:\game\saves
 
