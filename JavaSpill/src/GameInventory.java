@@ -29,8 +29,9 @@ public class GameInventory {
         }
         myReader.close();
       } catch (Exception e) {
-        System.out.println("An error occurred.");
-        e.printStackTrace();
+        System.err.println("Couldnt read locale files. They are either incompatible with the games software, or non existent");
+        System.err.println("Error message: " + e + "\n");
+        // e.printStackTrace();
       }
     }
   }

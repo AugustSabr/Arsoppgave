@@ -52,20 +52,17 @@ public class UpdateLocalFiles {
         }
 
         //lager og skriver i en fil
-        try {
-          FileWriter myWriter = new FileWriter("localFiles/" + categories[i] +".txt");
-          for(int g = 0; g < array.size(); g++){
-            myWriter.write(array.get(g) + System.lineSeparator());
-          }
-          myWriter.close();
-        } catch (Exception e) {
-          System.out.println("An error occurred.");
-          e.printStackTrace();
+        FileWriter myWriter = new FileWriter("localFiles/" + categories[i] +".txt");
+        for(int g = 0; g < array.size(); g++){
+          myWriter.write(array.get(g) + System.lineSeparator());
         }
+        myWriter.close();
       }
-
+      System.err.println("\nSuccessfully updated locale files.");
     } catch (Exception e) {
-      System.out.println(e);
+      System.err.println("\nCouldnt update locale files. Continues with old files.");
+      System.err.println("Error message: " + e + "\n");
+      // e.printStackTrace();
     }
   }
 
@@ -79,7 +76,9 @@ public class UpdateLocalFiles {
 
       return conn;
     } catch (Exception e) {
-      System.out.println(e);
+      System.err.println("\nCouldnt connect to the database. Do you have internet?");
+      System.err.println("Error message: " + e + "\n");
+      // e.printStackTrace();
       return null;
     }
   }

@@ -115,12 +115,15 @@ public class Room {
       ObjectInputStream input = new ObjectInputStream(new FileInputStream("saves/" + ui.inputTextArea.getText() + ".dat"));
       player = (Player) input.readObject();
       input.close();
+      ui.mainTextArea.setText(player.getName() + " is back for more");
     } catch (Exception e){
       player = new Player(ui.inputTextArea.getText());
-      System.err.println("couldnt load");
-      System.err.println(e);
+      ui.mainTextArea.setText(player.getName() + " started a new game");
+
+      System.err.println("Couldnt load game. Created new player.");
+      System.err.println("Error message: " + e + "\n");
+      // e.printStackTrace();
     }
-    player.setWeapon(in.getWeapon(0));
     Start();
   }
 
@@ -128,8 +131,6 @@ public class Room {
     vm.showGamescreen();
     ui.nameLabelString.setText(player.getName());
     ui.hpLabelInt.setText(player.getHealth() + "/" + player.getMaxHealth());
-
-    ui.mainTextArea.setText(player.getName() + " started a new game");
 
     ui.choice1.setText("Enter the dungon");
     ui.choice2.setText("Look at stats");
@@ -200,9 +201,11 @@ public class Room {
       game.nextPosition2 = "";
       game.nextPosition3 = "";
     } catch (Exception e){
-      ui.mainTextArea.setText("couldnt save, check console for details");
-      System.err.println(e);
-
+      ui.mainTextArea.setText("Couldnt save, check console for details");
+      System.err.println("Couldnt save");
+      System.err.println("Error message: " + e + "\n");
+      // e.printStackTrace();
+      
       ui.choice1.setText("continue anyway");
       ui.choice2.setText("");
       ui.choice3.setText("");

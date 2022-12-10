@@ -1,4 +1,11 @@
+@echo off
+
+TITLE Ignore
+
+echo downloading game
+cd ../
 javac -d classes src\*.java
+mkdir C:\game\saves
 
 mkdir C:\game\classes
 xcopy classes C:\game\classes
@@ -9,6 +16,4 @@ xcopy lib C:\game\lib
 mkdir C:\game\localFiles
 xcopy localFiles C:\game\localFiles
 
-xcopy run.bat C:\game
-
-pause
+xcopy batch\run.bat C:\Users\augus\Desktop
