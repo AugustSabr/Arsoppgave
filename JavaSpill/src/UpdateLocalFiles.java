@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.io.FileWriter;
 
-public class Connect {
+public class UpdateLocalFiles {
 
   // info-en du trenger for å koble til database;
   String ip = "192.168.0.106";
@@ -18,11 +18,7 @@ public class Connect {
 
   String[] categories = {"weapon", "armor", "blessing", "enemy"};
   
-  public Connect(){
-    get();
-  }
-
-  public void get(){
+  public UpdateLocalFiles(){
     try {
       Connection con = getConection();
       for (int i = 0; i < categories.length; i++){// repeterer dette for alle relevante tabellene
@@ -57,7 +53,7 @@ public class Connect {
 
         //lager og skriver i en fil
         try {
-          FileWriter myWriter = new FileWriter("categories/" + categories[i] +".txt");
+          FileWriter myWriter = new FileWriter("localFiles/" + categories[i] +".txt");
           for(int g = 0; g < array.size(); g++){
             myWriter.write(array.get(g) + System.lineSeparator());
           }
