@@ -2,8 +2,9 @@
 
 TITLE Ignore
 
-echo downloading game
-cd ../
+echo downloading game. This will close automatically after downloading all files
+echo(
+
 javac -d classes src\*.java
 mkdir C:\game\saves
 

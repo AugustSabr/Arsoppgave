@@ -1,8 +1,8 @@
 @echo off
 
-TITLE Ignore
+TITLE Ignore this is for reading error messages, and will close automatically after you closed the game
 
-echo this will close after you closed the game
+echo this is for reading error messages, and will close automatically after you closed the game
 echo(
 
 cd C:\game

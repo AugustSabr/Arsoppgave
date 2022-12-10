@@ -74,12 +74,12 @@ public class UI {
     
     //name input
     inputTextPanel = new JPanel();
-    inputTextPanel.setBounds(375, 300, 150, 40);
+    inputTextPanel.setBounds(375, 300, 150, 100);
     inputTextPanel.setBackground(Color.black);
 
-    inputTextArea = new JTextArea("enter here");
-    inputTextArea.setBounds(375, 300, 150, 40);
-    inputTextArea.setBackground(Color.black);
+    inputTextArea = new JTextArea("enter here|");
+    inputTextArea.setBounds(375, 300, 150, 100);
+    inputTextArea.setBackground(Color.blue);
     inputTextArea.setForeground(Color.white);
     inputTextArea.setFont(normalFont);
     inputTextArea.setEditable(true);
@@ -94,7 +94,7 @@ public class UI {
     mainTextPanel.setBounds(175, 100, 550, 350);
     mainTextPanel.setBackground(Color.black);
 
-    mainTextArea = new JTextArea("Enter a player name, if the name has a saved game you will continue");
+    mainTextArea = new JTextArea("Enter a player name, if the name has a saved game you will continue an old run. When you are ready press the button (dont press enter)");
     mainTextArea.setBounds(175, 100, 550, 350);
     mainTextArea.setBackground(Color.black);
     mainTextArea.setForeground(Color.white);
