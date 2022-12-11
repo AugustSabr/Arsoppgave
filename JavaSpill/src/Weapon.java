@@ -9,7 +9,7 @@ public class Weapon implements Serializable {
     weaponDamage = wd;
   }
 
-  public Weapon reinforceWeapon() {// åppgraderer våpene med 30 skade
+  public Weapon reinforceWeapon() {// oppgraderer våpene med 30 skade
     weaponType = "reinforced " + weaponType;
     weaponDamage = weaponDamage + 30;
     return null;

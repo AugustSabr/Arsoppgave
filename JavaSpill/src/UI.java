@@ -81,7 +81,7 @@ public class UI {
     inputTextPanel.setBounds(375, 300, 150, 100);
     inputTextPanel.setBackground(Color.black);
 
-    inputTextArea = new JTextArea("enter here|");
+    inputTextArea = new JTextArea("enter_here");
     inputTextArea.setBounds(375, 300, 150, 100);
     inputTextArea.setBackground(Color.blue);
     inputTextArea.setForeground(Color.white);

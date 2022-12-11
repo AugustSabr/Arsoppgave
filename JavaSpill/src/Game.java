@@ -1,13 +1,13 @@
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 public class Game {
-  public static Player player;
-  ChoiceHandler cHandler = new ChoiceHandler();// choiceHandler er en class jeg lagde selv. sel lenger nede
-  UI ui = new UI();
-  VisibilityManager vm = new VisibilityManager(ui);//sender med UI fordi det er egt bare det VisibilityManager gjør visible eller ikke 
-  Game game = this;
-  GameInventory in;
-  Room room;
+  private static Player player;
+  private ChoiceHandler cHandler = new ChoiceHandler();// choiceHandler er en class jeg lagde selv. sel lenger nede
+  private UI ui = new UI();
+  private VisibilityManager vm = new VisibilityManager(ui);//sender med UI fordi det er egt bare det VisibilityManager gjør visible eller ikke 
+  private Game game = this;
+  private GameInventory in;
+  private Room room;
 
   String nextPosition1, nextPosition2, nextPosition3, roll = "funRoll";
   public static void main(String[] args) {

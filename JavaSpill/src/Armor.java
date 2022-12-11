@@ -9,7 +9,7 @@ public class Armor implements Serializable{
     armorDefence = ad;
   }
 
-  public Armor reinforceArmor() {// åppgraderer rustningen med 20 defence
+  public Armor reinforceArmor() {// oppgraderer rustningen med 20 defence
     armorType = "reinforced " + armorType;
     armorDefence = armorDefence + 20;
     return null;
