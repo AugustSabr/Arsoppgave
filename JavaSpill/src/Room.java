@@ -631,18 +631,25 @@ public class Room {
 
     // gjør at du må kaste en slags ternign får å se om du kan stikke av. Om du kommer unna kan regnes prosentvis 1 - spiller skade / fiende liv.
   public void escapeRoll(){
-    ui.mainTextArea.setText("Roll to se if you can escape. You have to get " +  Math.round(24-1*(24/(1/(player.getTotalDamage()/(double)enemy.getHealth())))) + " or higher.");
+    if (Math.round(24/(1/(player.getTotalDamage()/(double)enemy.getHealth()))) <= 24) {
+      ui.mainTextArea.setText("Roll to se if you can escape. You have to get " +  Math.round(24/(1/(player.getTotalDamage()/(double)enemy.getHealth()))) + " or higher.");
 
-    ui.choice3.setText("");
-    game.nextPosition3 = "";
-
-    game.roll = "run";
+      ui.choice3.setText("");
+      game.nextPosition3 = "";
+  
+      game.roll = "run";
+    } else {
+      ui.mainTextArea.setText(player.getName() + " coudnt escape.");
+      
+      ui.choice3.setText("");
+      game.nextPosition3 = "";
+    }
   }
 
   private void run(){
     ui.diceTextArea.setText("" + (int)Math.floor(Math.random()*(25)));
 
-    if(Integer.parseInt(ui.diceTextArea.getText()) >= Math.round(24+1-(24/(1/(player.getTotalDamage()/(double)enemy.getHealth()))))){
+    if(Integer.parseInt(ui.diceTextArea.getText()) >= Math.round(24/(1/(player.getTotalDamage()/(double)enemy.getHealth())))){
       ui.mainTextArea.setText(player.getName() + " successfully escaped.");
 
       ui.choice1.setText(">");
@@ -721,5 +728,3 @@ public class Room {
 
 //importantchoice
 //cant flee from stats
-
-//se på flee matten
