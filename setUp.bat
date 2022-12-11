@@ -24,4 +24,4 @@ mkdir C:\game\saves
 
 cd batch/
 xcopy run.bat C:\game
-xcopy Game.lnk C:\Users\augus\Desktop
+xcopy Game.lnk %USERPROFILE%\Desktop
