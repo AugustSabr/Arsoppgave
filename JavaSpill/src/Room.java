@@ -129,7 +129,8 @@ public class Room {
 
   private void Start(){
     vm.showGamescreen();
-    ui.nameLabelString.setText(player.getName());
+    ui.floorLabelInt.setText("" + dungeonFloor);
+    ui.floorLabelInt.setText("" + player.getGold());
     ui.hpLabelInt.setText(player.getHealth() + "/" + player.getMaxHealth());
 
     ui.choice1.setText("Enter the dungon");
@@ -146,9 +147,9 @@ public class Room {
 
   private void doorway(){
     if(Room.dungeonFloor < 3 && Math.floor(Math.random()*10) == 0){// liten sjanse for å kunne gå ned til et farligere nivå
-      ui.mainTextArea.setText(player.getName() + " found a stairway down to a lower floor.");
+      ui.mainTextArea.setText(player.getName() + " found a stairway down to a higher floor.");
       
-      ui.choice1.setText("Go down");
+      ui.choice1.setText("Go up");
       ui.choice2.setText("Stay on this floor");
       ui.choice3.setText("");
 
@@ -173,7 +174,8 @@ public class Room {
 
   private void newFloor(){
     Room.dungeonFloor += 1;
-    ui.mainTextArea.setText(player.getName() + " went down to a lower floor.\n" + player.getName() + " is now on floor " + dungeonFloor);
+    ui.floorLabelInt.setText("" + dungeonFloor);
+    ui.mainTextArea.setText(player.getName() + " went up to a floor.\nIts more dangerous here");
 
     ui.choice1.setText(">");
     ui.choice2.setText("");
@@ -221,13 +223,13 @@ public class Room {
     game.nextPosition1 = importantchoice2;
 
     if (player.getWeapon() != null && player.getArmor() != null){
-      ui.mainTextArea.setText("Gold: " + player.getGold() + "\nHealing potions: " + player.getPotions() + "\nBase damage: " + player.getBaseDamage() + "\n\nWeapon: " + player.getWeapon().getType() + "\nWeapon damage: " + player.getWeapon().getDamage() + "\n\nArmor: " + player.getArmor().getType() + "\nDefence: " + player.getTotalDefence() + "\n\nTotal damage: " + player.getTotalDamage());
+      ui.mainTextArea.setText("Healing potions: " + player.getPotions() + "\nBase damage: " + player.getBaseDamage() + "\n\nWeapon: " + player.getWeapon().getType() + "\nWeapon damage: " + player.getWeapon().getDamage() + "\n\nArmor: " + player.getArmor().getType() + "\nDefence: " + player.getTotalDefence() + "\n\nTotal damage: " + player.getTotalDamage());
     } else if (player.getWeapon() != null){
-      ui.mainTextArea.setText("Gold: " + player.getGold() + "\nHealing potions: " + player.getPotions() + "\nBase damage: " + player.getBaseDamage() + "\n\nWeapon: " + player.getWeapon().getType() + "\nWeapon damage: " + player.getWeapon().getDamage() + "\n\nArmor:\nDefence: " + player.getTotalDefence() + "\n\nTotal damage: " + player.getTotalDamage());
+      ui.mainTextArea.setText("Healing potions: " + player.getPotions() + "\nBase damage: " + player.getBaseDamage() + "\n\nWeapon: " + player.getWeapon().getType() + "\nWeapon damage: " + player.getWeapon().getDamage() + "\n\nArmor:\nDefence: " + player.getTotalDefence() + "\n\nTotal damage: " + player.getTotalDamage());
     } else if (player.getArmor() != null){
-      ui.mainTextArea.setText("Gold: " + player.getGold() + "\nHealing potions: " + player.getPotions() + "\nBase damage: " + player.getBaseDamage() + "\n\nWeapon:\nWeapon damage:\n\nArmor: " + player.getArmor().getType() + "\nDefence: " + player.getTotalDefence() + "\n\nTotal damage: " + player.getTotalDamage());
+      ui.mainTextArea.setText("Healing potions: " + player.getPotions() + "\nBase damage: " + player.getBaseDamage() + "\n\nWeapon:\nWeapon damage:\n\nArmor: " + player.getArmor().getType() + "\nDefence: " + player.getTotalDefence() + "\n\nTotal damage: " + player.getTotalDamage());
     } else {
-      ui.mainTextArea.setText("Gold: " + player.getGold() + "\nHealing potions: " + player.getPotions() + "\nBase damage: " + player.getBaseDamage() + "\n\nWeapon:\nWeapon damage:\n\nArmor:\nDefence: " + player.getTotalDefence() + "\n\nTotal damage: " + player.getTotalDamage());
+      ui.mainTextArea.setText("Healing potions: " + player.getPotions() + "\nBase damage: " + player.getBaseDamage() + "\n\nWeapon:\nWeapon damage:\n\nArmor:\nDefence: " + player.getTotalDefence() + "\n\nTotal damage: " + player.getTotalDamage());
     }
 
     ui.choice2.setText("Use healing potion");
@@ -276,6 +278,7 @@ public class Room {
     } else {
       player.getWeapon().reinforceWeapon();
       player.subtractGold(150);
+      ui.floorLabelInt.setText("" + player.getGold());
       ui.mainTextArea.setText(player.getName() + " now has a " + player.getWeapon().getType() + " that deals " + player.getWeapon().getDamage()+ " damage.");
     }
     ui.choice1.setText("Back to stats");
@@ -293,6 +296,7 @@ public class Room {
     } else {
       player.getArmor().reinforceArmor();
       player.subtractGold(150);
+      ui.floorLabelInt.setText("" + player.getGold());
       ui.mainTextArea.setText(player.getName() + " now has a " + player.getArmor().getType() + ". It has " + player.getArmor().getDefence()+ " defence.");
     }
     ui.choice1.setText("Back to stats");
@@ -490,6 +494,7 @@ public class Room {
       game.nextPosition3 = "";
     }else{
       player.addGold(enemy.getBaseDamage());
+      ui.floorLabelInt.setText("" + player.getGold());
       ui.mainTextArea.setText(player.getName() + " attacks the " + enemy.getType() + " and deals " + damage + " damage\nThe " + enemy.getType() + " was slayed\n" + player.getName() + " now has " + player.getGold() + " gold.");
 
       ui.choice1.setText(">");
@@ -524,7 +529,7 @@ public class Room {
       importantchoice1 = ui.choice1.getText();
       importantchoice2 = game.nextPosition1;
     }else{// death screen
-      ui.mainTextArea.setText("The " + enemy.getType() + " attacks the " + player.getName() + " and deals " + Math.max(0, enemyDamage - playerDefence) + " damage.\n" + player.getName() + " was slayed.\nGame over");
+      ui.mainTextArea.setText("The " + enemy.getType() + " attacks the " + player.getName() + " and deals " + Math.max(0, enemyDamage - playerDefence) + " damage.\n" + player.getName() + " was slayed.\nGame over\n\n\n\n\n:(");
 
       ui.playerPanel.setVisible(false);
       ui.choiceButtonPanel.setVisible(false);
@@ -713,6 +718,8 @@ public class Room {
 
   private void acceptBlessing(){
     player.setBlessing(blessing);
+    ui.hpLabelInt.setText(player.getHealth() + "/" + player.getMaxHealth());
+
     ui.hpLabelInt.setText(player.getHealth() + "/" + player.getMaxHealth());
     ui.mainTextArea.setText(player.getName() + " now has the " + player.getBlessing().getType() + " blessing");
 

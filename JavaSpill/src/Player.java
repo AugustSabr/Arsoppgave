@@ -109,15 +109,15 @@ public class Player implements Serializable{
 
     public void setBlessing(Blessing blessing){//måten jeg setter blessings gjør at kun disse 5 typer blessings vil ha noen effect. det er egt ikke optimalt, men jeg ser ingen annen måte og gjøre det på pga hver blessing gjør noe helt forskjeldig
       this.blessing = blessing;
-      if(this.blessing.getType() == "power"){
+      if(this.blessing.getType().equals("power")){
         this.basedamage += this.blessing.getEffect();
-      }else if(this.blessing.getType() == "luck"){
+      }else if(this.blessing.getType().equals("luck")){
         this.critChance = this.blessing.getEffect() + 1;// 1/3
-      }else if(blessing.getType() == "destruction"){
+      }else if(blessing.getType().equals("destruction")){
       this.critMultiplier = (double)this.blessing.getEffect()/100;
-      }else if(this.blessing.getType() == "health"){
+      }else if(this.blessing.getType().equals("health")){
         changeMaxHealth(this.blessing.getEffect());
-      }else if(this.blessing.getType() == "protection"){
+      }else if(this.blessing.getType().equals("protection")){
         this.baseDefence += this.blessing.getEffect();
       }
     }

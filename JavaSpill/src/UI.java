@@ -16,7 +16,7 @@ public class UI {
   ImageIcon img;
   Container con;
   JPanel titleNamePanel, startButtonPanel, updatePanel, mainTextPanel, choiceButtonPanel, playerPanel, inputTextPanel, diceButtonPanel;
-  JLabel titleNameLabel, nameLabel, nameLabelString, hpLabel, hpLabelInt;
+  JLabel titleNameLabel, floorLabel, floorLabelInt, goldLabel, goldLabelInt, hpLabel, hpLabelInt;
   JButton startButton, updateButton, choice1, choice2, choice3, diceButton;
   JTextArea mainTextArea, inputTextArea, diceTextArea;
   Font titleFont = new Font("Times New Roman", Font.PLAIN, 128), normalFont = new Font("Times New Roman", Font.PLAIN, 25);
@@ -144,13 +144,21 @@ public class UI {
     playerPanel.setBackground(Color.black);
     playerPanel.setLayout(new GridLayout(1,4));
 
-    nameLabel = new JLabel("Player:");
-    nameLabel.setFont(normalFont);
-    nameLabel.setForeground(Color.white);
+    floorLabel = new JLabel("Floor:");
+    floorLabel.setFont(normalFont);
+    floorLabel.setForeground(Color.white);
     
-    nameLabelString = new JLabel();
-    nameLabelString.setFont(normalFont);
-    nameLabelString.setForeground(Color.white);
+    floorLabelInt = new JLabel();
+    floorLabelInt.setFont(normalFont);
+    floorLabelInt.setForeground(Color.white);
+
+    goldLabel = new JLabel("Gold:");
+    goldLabel.setFont(normalFont);
+    goldLabel.setForeground(Color.white);
+    
+    goldLabelInt = new JLabel("1200");
+    goldLabelInt.setFont(normalFont);
+    goldLabelInt.setForeground(Color.white);
 
     hpLabel = new JLabel("HP:");
     hpLabel.setFont(normalFont);
@@ -189,8 +197,10 @@ public class UI {
     choiceButtonPanel.add(choice2);
     choiceButtonPanel.add(choice3);
     
-    playerPanel.add(nameLabel);
-    playerPanel.add(nameLabelString);
+    playerPanel.add(floorLabel);
+    playerPanel.add(floorLabelInt);
+    playerPanel.add(goldLabel);
+    playerPanel.add(goldLabelInt);
     playerPanel.add(hpLabel);
     playerPanel.add(hpLabelInt);
 
