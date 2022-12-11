@@ -8,20 +8,24 @@ echo(
 cd Javaspill/
 javac -d classes src\*.java
 
-mkdir C:\game\classes
-xcopy classes C:\game\classes
+if not exist "C:\game" mkdir C:\game
 
-mkdir C:\game\icon
-xcopy icon C:\game\icon
+rmdir /s /q C:\game\classes
+xcopy classes C:\game\classes /I
 
-mkdir C:\game\lib
-xcopy lib C:\game\lib
+rmdir /s /q C:\game\icon
+xcopy icon C:\game\icon /I
 
-mkdir C:\game\localFiles
-xcopy localFiles C:\game\localFiles
+rmdir /s /q C:\game\lib
+xcopy lib C:\game\lib /I
 
-mkdir C:\game\saves
+rmdir /s /q C:\game\localFiles
+xcopy localFiles C:\game\localFiles /I
+
+if not exist "C:\game\saves" mkdir C:\game\saves
 
 cd batch/
+del C:\game\run.bat
 xcopy run.bat C:\game
+del %USERPROFILE%\Desktop\Game.lnk
 xcopy Game.lnk %USERPROFILE%\Desktop

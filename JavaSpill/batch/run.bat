@@ -1,6 +1,6 @@
 @echo off
 
-TITLE Ignore this is for reading error messages, and will close automatically after you closed the game
+TITLE Ignore. This is for reading error messages, and will close automatically after you closed the game
 
 echo this is for reading error messages, and will close automatically after you closed the game
 echo(

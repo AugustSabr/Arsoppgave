@@ -3,6 +3,7 @@ import java.awt.Font;
 import java.awt.Container;
 import java.awt.GridLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,6 +13,7 @@ import javax.swing.JTextArea;
 //hele filen er lager egt bare de tre displayene jeg bruker iløpet av filen. funcksjonene er alle funksjoner fra librariene jeg bruker
 public class UI {
   JFrame window;
+  ImageIcon img;
   Container con;
   JPanel titleNamePanel, startButtonPanel, updatePanel, mainTextPanel, choiceButtonPanel, playerPanel, inputTextPanel, diceButtonPanel;
   JLabel titleNameLabel, nameLabel, nameLabelString, hpLabel, hpLabelInt;
@@ -28,6 +30,8 @@ public class UI {
     window.getContentPane().setBackground(Color.black);
     window.setLayout(null);
     window.setVisible(true);
+    img = new ImageIcon("icon/gameicon.png");
+    window.setIconImage(img.getImage());
     con = window.getContentPane();
 
     //titalscreen

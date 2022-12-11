@@ -618,7 +618,7 @@ public class Room {
       game.nextPosition2 = "dontGetArmor";
       game.nextPosition3 = "";
     } else{
-      ui.mainTextArea.setText(player.getName() + " coudnt pick up the enemy");
+      ui.mainTextArea.setText(player.getName() + " coudnt pick up the armor");
       ui.choice1.setText(">");
       ui.choice2.setText("");
       ui.choice3.setText("");
