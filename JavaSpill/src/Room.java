@@ -100,24 +100,19 @@ public class Room {
   }
 
   public void funRoll(){
-    ui.diceTextArea.setText("" + (int)Math.floor(Math.random()*(25)));
-  }
-
-  public void enterName(){
-    ui.choice1.setText("Ready");
-    game.nextPosition1 = "make player";
+    ui.diceTextField.setText("" + (int)Math.floor(Math.random()*(25)));
   }
 
   //sjekker om navnet du skrev inn alerede har en lokal lagret spiller
   public void makePlayer(){
     player = Game.getPlayer();
     try {
-      ObjectInputStream input = new ObjectInputStream(new FileInputStream("saves/" + ui.inputTextArea.getText() + ".dat"));
+      ObjectInputStream input = new ObjectInputStream(new FileInputStream("saves/" + ui.inputTextField.getText() + ".dat"));
       player = (Player) input.readObject();
       input.close();
       ui.mainTextArea.setText(player.getName() + " is back for more");
     } catch (Exception e){
-      player = new Player(ui.inputTextArea.getText());
+      player = new Player(ui.inputTextField.getText());
       ui.mainTextArea.setText(player.getName() + " started a new game");
 
       System.err.println("Couldnt load game. Created new player.");
@@ -472,11 +467,11 @@ public class Room {
   }
 
   private void attackPlayer(){
-    ui.diceTextArea.setText("" + (int)Math.floor(Math.random()*(25)));
+    ui.diceTextField.setText("" + (int)Math.floor(Math.random()*(25)));
 
     int damage = player.getTotalDamage();
     
-    if(Integer.parseInt(ui.diceTextArea.getText()) >= player.getCritChance()){//sjekker hva du fikk når du "kasta terningen"
+    if(Integer.parseInt(ui.diceTextField.getText()) >= player.getCritChance()){//sjekker hva du fikk når du "kasta terningen"
       damage = (int)Math.round(damage * player.getCritMultiplier());
     }
 
@@ -577,9 +572,9 @@ public class Room {
   }
 
   private void lootWeapon(){
-    ui.diceTextArea.setText("" + (int)Math.floor(Math.random()*(25)));
+    ui.diceTextField.setText("" + (int)Math.floor(Math.random()*(25)));
     
-    if(Integer.parseInt(ui.diceTextArea.getText()) >= 17){
+    if(Integer.parseInt(ui.diceTextField.getText()) >= 17){
       newWeapon = enemy.getWeapon();
       if (player.getWeapon() != null){
         ui.mainTextArea.setText("The " + enemy.getType() + " dropped it's " + enemy.getWeapon().getType() + ". It does " + enemy.getWeapon().getDamage() + " damage.\n" + player.getName() + " has a " + player.getWeapon().getType() + " that deals " + player.getWeapon().getDamage()+ " damage.\nIf you pick up the new weapon, you discard the old one.");
@@ -606,9 +601,9 @@ public class Room {
   }
 
   private void lootArmor(){
-    ui.diceTextArea.setText("" + (int)Math.floor(Math.random()*(25)));
+    ui.diceTextField.setText("" + (int)Math.floor(Math.random()*(25)));
     
-    if(Integer.parseInt(ui.diceTextArea.getText()) >= 17){
+    if(Integer.parseInt(ui.diceTextField.getText()) >= 17){
       newArmor = enemy.getArmor();
       if (player.getArmor() != null){
         ui.mainTextArea.setText("The " + enemy.getType() + " dropped it's " + enemy.getArmor().getType() + " with " + enemy.getArmor().getDefence() + " defence.\n" + player.getName() + " has " + player.getArmor().getType() + ". It has " + player.getArmor().getDefence()+ " defence.\nIf you pick up the new armor, you discard the old.");
@@ -652,9 +647,9 @@ public class Room {
   }
 
   private void run(){
-    ui.diceTextArea.setText("" + (int)Math.floor(Math.random()*(25)));
+    ui.diceTextField.setText("" + (int)Math.floor(Math.random()*(25)));
 
-    if(Integer.parseInt(ui.diceTextArea.getText()) >= Math.round(24/(1/(player.getTotalDamage()/(double)enemy.getHealth())))){
+    if(Integer.parseInt(ui.diceTextField.getText()) >= Math.round(24/(1/(player.getTotalDamage()/(double)enemy.getHealth())))){
       ui.mainTextArea.setText(player.getName() + " successfully escaped.");
 
       ui.choice1.setText(">");

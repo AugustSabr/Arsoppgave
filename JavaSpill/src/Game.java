@@ -27,8 +27,9 @@ public class Game {
         case "start":
           in = new GameInventory();//lager en inventory av de lokale filene
           room = new Room(game, ui, vm, in); //lager et room og sender med alle nødvendige objects så room kan endre på de underveis
-          vm.enterName(); room.enterName(); break;
+          vm.enterName(); break;
         case "update": new UpdateLocalFiles(); break;
+        case "makePlayer": room.makePlayer(); break;
         case "c1": room.selectPosition(nextPosition1); break;
         case "c2": room.selectPosition(nextPosition2); break;
         case "c3": room.selectPosition(nextPosition3); break;

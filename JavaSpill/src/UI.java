@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 //hele filen er lager egt bare de tre displayene jeg bruker iløpet av filen. funcksjonene er alle funksjoner fra librariene jeg bruker
 public class UI {
@@ -18,7 +19,8 @@ public class UI {
   JPanel titleNamePanel, startButtonPanel, updatePanel, mainTextPanel, choiceButtonPanel, playerPanel, inputTextPanel, diceButtonPanel;
   JLabel titleNameLabel, floorLabel, floorLabelInt, goldLabel, goldLabelInt, hpLabel, hpLabelInt;
   JButton startButton, updateButton, choice1, choice2, choice3, diceButton;
-  JTextArea mainTextArea, inputTextArea, diceTextArea;
+  JTextField inputTextField, diceTextField;
+  JTextArea mainTextArea;
   Font titleFont = new Font("Times New Roman", Font.PLAIN, 128), normalFont = new Font("Times New Roman", Font.PLAIN, 25);
 
   public void createUI(Game.ChoiceHandler cHandler){
@@ -81,14 +83,16 @@ public class UI {
     inputTextPanel.setBounds(375, 300, 150, 100);
     inputTextPanel.setBackground(Color.black);
 
-    inputTextArea = new JTextArea("enter_here");
-    inputTextArea.setBounds(375, 300, 150, 100);
-    inputTextArea.setBackground(Color.blue);
-    inputTextArea.setForeground(Color.white);
-    inputTextArea.setFont(normalFont);
-    inputTextArea.setEditable(true);
-    inputTextPanel.add(inputTextArea);
-
+    inputTextField = new JTextField("enter name");
+    inputTextField.setBounds(375, 300, 200, 100);
+    inputTextField.setBackground(Color.black);
+    inputTextField.setForeground(Color.white);
+    inputTextField.setBorder(null);
+    inputTextField.setFont(normalFont);
+    inputTextField.setEditable(true);
+    inputTextField.addActionListener(cHandler);
+    inputTextField.setActionCommand("makePlayer");
+    inputTextPanel.add(inputTextField);
 
     con.add(inputTextPanel);
 
@@ -174,12 +178,12 @@ public class UI {
     diceButtonPanel.setBackground(Color.black);
     diceButtonPanel.setLayout(new GridLayout(2,1));
     
-    diceTextArea = new JTextArea("24");
-    diceTextArea.setBackground(Color.red);
-    diceTextArea.setForeground(Color.white);
-    diceTextArea.setFont(normalFont);
-    diceTextArea.setBounds(700, 450, 20, 20);
-    diceTextArea.setEditable(false);
+    diceTextField = new JTextField("24");
+    diceTextField.setBackground(Color.red);
+    diceTextField.setForeground(Color.white);
+    diceTextField.setFont(normalFont);
+    diceTextField.setBounds(700, 450, 20, 20);
+    diceTextField.setEditable(false);
 
     diceButton = new JButton("roll");
     diceButton.setBackground(Color.green);
@@ -189,7 +193,7 @@ public class UI {
     diceButton.addActionListener(cHandler);
     diceButton.setActionCommand("roll");
 
-    diceButtonPanel.add(diceTextArea);
+    diceButtonPanel.add(diceTextField);
     diceButtonPanel.add(diceButton);
 
     //add
