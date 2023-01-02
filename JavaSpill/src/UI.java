@@ -102,7 +102,7 @@ public class UI {
     mainTextPanel.setBounds(175, 100, 550, 350);
     mainTextPanel.setBackground(Color.black);
 
-    mainTextArea = new JTextArea("Enter a player name, if the name has a saved game you will continue an old run. When you are ready press the button (dont press enter)");
+    mainTextArea = new JTextArea("Replace 'enter here' with your player name, if the name has a saved game on this computer, you will continue an old run. When you are ready press enter");
     mainTextArea.setBounds(175, 100, 550, 350);
     mainTextArea.setBackground(Color.black);
     mainTextArea.setForeground(Color.white);
