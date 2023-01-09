@@ -125,7 +125,7 @@ public class Room {
   private void Start(){
     vm.showGamescreen();
     ui.floorLabelInt.setText("" + dungeonFloor);
-    ui.floorLabelInt.setText("" + player.getGold());
+    ui.goldLabelInt.setText("" + player.getGold());
     ui.hpLabelInt.setText(player.getHealth() + "/" + player.getMaxHealth());
 
     ui.choice1.setText("Enter the dungon");
@@ -273,7 +273,7 @@ public class Room {
     } else {
       player.getWeapon().reinforceWeapon();
       player.subtractGold(150);
-      ui.floorLabelInt.setText("" + player.getGold());
+      ui.goldLabelInt.setText("" + player.getGold());
       ui.mainTextArea.setText(player.getName() + " now has a " + player.getWeapon().getType() + " that deals " + player.getWeapon().getDamage()+ " damage.");
     }
     ui.choice1.setText("Back to stats");
@@ -291,7 +291,7 @@ public class Room {
     } else {
       player.getArmor().reinforceArmor();
       player.subtractGold(150);
-      ui.floorLabelInt.setText("" + player.getGold());
+      ui.goldLabelInt.setText("" + player.getGold());
       ui.mainTextArea.setText(player.getName() + " now has a " + player.getArmor().getType() + ". It has " + player.getArmor().getDefence()+ " defence.");
     }
     ui.choice1.setText("Back to stats");
@@ -489,7 +489,7 @@ public class Room {
       game.nextPosition3 = "";
     }else{
       player.addGold(enemy.getBaseDamage());
-      ui.floorLabelInt.setText("" + player.getGold());
+      ui.goldLabelInt.setText("" + player.getGold());
       ui.mainTextArea.setText(player.getName() + " attacks the " + enemy.getType() + " and deals " + damage + " damage\nThe " + enemy.getType() + " was slayed\n" + player.getName() + " now has " + player.getGold() + " gold.");
 
       ui.choice1.setText(">");

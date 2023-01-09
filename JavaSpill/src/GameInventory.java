@@ -9,10 +9,8 @@ public class GameInventory {
   ArrayList<Blessing> Blessings = new ArrayList<Blessing>();
   ArrayList<Enemy> Enemys = new ArrayList<Enemy>();
 
-  
   private String[] categories = {"weapon", "armor", "blessing", "enemy"};
   private int floor;
-  
 
   public GameInventory(){
     for (int i = 0; i < categories.length; i++){

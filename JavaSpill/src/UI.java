@@ -160,7 +160,7 @@ public class UI {
     goldLabel.setFont(normalFont);
     goldLabel.setForeground(Color.white);
     
-    goldLabelInt = new JLabel("1200");
+    goldLabelInt = new JLabel();
     goldLabelInt.setFont(normalFont);
     goldLabelInt.setForeground(Color.white);
 
