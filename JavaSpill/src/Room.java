@@ -124,9 +124,9 @@ public class Room {
 
   private void Start(){
     vm.showGamescreen();
-    ui.floorLabelInt.setText("" + dungeonFloor);
-    ui.goldLabelInt.setText("" + player.getGold());
-    ui.hpLabelInt.setText(player.getHealth() + "/" + player.getMaxHealth());
+    ui.floorIntLabel.setText("" + dungeonFloor);
+    ui.goldIntLabel.setText("" + player.getGold());
+    ui.hpIntLabel.setText(player.getHealth() + "/" + player.getMaxHealth());
 
     ui.choice1.setText("Enter the dungon");
     ui.choice2.setText("Look at stats");
@@ -169,7 +169,7 @@ public class Room {
 
   private void newFloor(){
     Room.dungeonFloor += 1;
-    ui.floorLabelInt.setText("" + dungeonFloor);
+    ui.floorIntLabel.setText("" + dungeonFloor);
     ui.mainTextArea.setText(player.getName() + " went up to a floor.\nIts more dangerous here");
 
     ui.choice1.setText(">");
@@ -243,7 +243,7 @@ public class Room {
     if (player.getPotions() > 0){
       player.heal();
       ui.mainTextArea.setText(player.getName() + " is back to " + player.getHealth() + " health.\n" + player.getName() + " has " + player.getPotions() + " healing potions left.\n");
-      ui.hpLabelInt.setText(player.getHealth() + "/" + player.getMaxHealth());
+      ui.hpIntLabel.setText(player.getHealth() + "/" + player.getMaxHealth());
     } else {
       ui.mainTextArea.setText(player.getName() + " dont have enough healing potions");
     }
@@ -273,7 +273,7 @@ public class Room {
     } else {
       player.getWeapon().reinforceWeapon();
       player.subtractGold(150);
-      ui.goldLabelInt.setText("" + player.getGold());
+      ui.goldIntLabel.setText("" + player.getGold());
       ui.mainTextArea.setText(player.getName() + " now has a " + player.getWeapon().getType() + " that deals " + player.getWeapon().getDamage()+ " damage.");
     }
     ui.choice1.setText("Back to stats");
@@ -291,7 +291,7 @@ public class Room {
     } else {
       player.getArmor().reinforceArmor();
       player.subtractGold(150);
-      ui.goldLabelInt.setText("" + player.getGold());
+      ui.goldIntLabel.setText("" + player.getGold());
       ui.mainTextArea.setText(player.getName() + " now has a " + player.getArmor().getType() + ". It has " + player.getArmor().getDefence()+ " defence.");
     }
     ui.choice1.setText("Back to stats");
@@ -489,7 +489,7 @@ public class Room {
       game.nextPosition3 = "";
     }else{
       player.addGold(enemy.getBaseDamage());
-      ui.goldLabelInt.setText("" + player.getGold());
+      ui.goldIntLabel.setText("" + player.getGold());
       ui.mainTextArea.setText(player.getName() + " attacks the " + enemy.getType() + " and deals " + damage + " damage\nThe " + enemy.getType() + " was slayed\n" + player.getName() + " now has " + player.getGold() + " gold.");
 
       ui.choice1.setText(">");
@@ -508,7 +508,7 @@ public class Room {
     int playerHealth = player.getHealth();
     playerHealth -=  Math.max(0, enemyDamage - playerDefence);
     player.changeHealth(playerHealth);
-    ui.hpLabelInt.setText(player.getHealth() + "/" + player.getMaxHealth());
+    ui.hpIntLabel.setText(player.getHealth() + "/" + player.getMaxHealth());
 
     if(playerHealth > 0){
       ui.mainTextArea.setText("The " + enemy.getType() + " attacks the " + player.getName() + " and deals " + Math.max(0, enemyDamage - playerDefence) + " damage.");
@@ -687,7 +687,7 @@ public class Room {
       player.changeHealth((int)(Math.floor(Math.random()*20)+1));
       ui.mainTextArea.setText(player.getName() + " drank posion.");
     }
-    ui.hpLabelInt.setText(player.getHealth() + "/" + player.getMaxHealth());
+    ui.hpIntLabel.setText(player.getHealth() + "/" + player.getMaxHealth());
 
     ui.choice1.setText(">");
     ui.choice2.setText("");
@@ -713,9 +713,9 @@ public class Room {
 
   private void acceptBlessing(){
     player.setBlessing(blessing);
-    ui.hpLabelInt.setText(player.getHealth() + "/" + player.getMaxHealth());
+    ui.hpIntLabel.setText(player.getHealth() + "/" + player.getMaxHealth());
 
-    ui.hpLabelInt.setText(player.getHealth() + "/" + player.getMaxHealth());
+    ui.hpIntLabel.setText(player.getHealth() + "/" + player.getMaxHealth());
     ui.mainTextArea.setText(player.getName() + " now has the " + player.getBlessing().getType() + " blessing");
 
     ui.choice1.setText(">");

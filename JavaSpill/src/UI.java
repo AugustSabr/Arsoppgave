@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
@@ -11,13 +12,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+
 //hele filen er lager egt bare de tre displayene jeg bruker iløpet av filen. funcksjonene er alle funksjoner fra librariene jeg bruker
 public class UI {
   JFrame window;
   ImageIcon img;
   Container con;
+  Dimension diceImgSize;
   JPanel titleNamePanel, startButtonPanel, updatePanel, mainTextPanel, choiceButtonPanel, playerPanel, inputTextPanel, diceButtonPanel;
-  JLabel titleNameLabel, floorLabel, floorLabelInt, goldLabel, goldLabelInt, hpLabel, hpLabelInt;
+  JLabel titleNameLabel, floorLabel, floorIntLabel, goldLabel, goldIntLabel, hpLabel, hpIntLabel, diceImgLabel;
   JButton startButton, updateButton, choice1, choice2, choice3, diceButton;
   JTextField inputTextField, diceTextField;
   JTextArea mainTextArea;
@@ -99,11 +102,11 @@ public class UI {
     //Game Screen
     //main taxt area
     mainTextPanel = new JPanel();
-    mainTextPanel.setBounds(175, 100, 550, 350);
+    mainTextPanel.setBounds(175, 100, 550, 275);
     mainTextPanel.setBackground(Color.black);
 
     mainTextArea = new JTextArea("Replace 'enter here' with your player name, if the name has a saved game on this computer, you will continue an old run. When you are ready press enter");
-    mainTextArea.setBounds(175, 100, 550, 350);
+    mainTextArea.setBounds(175, 100, 550, 275);
     mainTextArea.setBackground(Color.black);
     mainTextArea.setForeground(Color.white);
     mainTextArea.setFont(normalFont);
@@ -152,47 +155,55 @@ public class UI {
     floorLabel.setFont(normalFont);
     floorLabel.setForeground(Color.white);
     
-    floorLabelInt = new JLabel();
-    floorLabelInt.setFont(normalFont);
-    floorLabelInt.setForeground(Color.white);
+    floorIntLabel = new JLabel();
+    floorIntLabel.setFont(normalFont);
+    floorIntLabel.setForeground(Color.white);
 
     goldLabel = new JLabel("Gold:");
     goldLabel.setFont(normalFont);
     goldLabel.setForeground(Color.white);
     
-    goldLabelInt = new JLabel();
-    goldLabelInt.setFont(normalFont);
-    goldLabelInt.setForeground(Color.white);
+    goldIntLabel = new JLabel();
+    goldIntLabel.setFont(normalFont);
+    goldIntLabel.setForeground(Color.white);
 
     hpLabel = new JLabel("HP:");
     hpLabel.setFont(normalFont);
     hpLabel.setForeground(Color.white);
 
-    hpLabelInt = new JLabel();
-    hpLabelInt.setFont(normalFont);
-    hpLabelInt.setForeground(Color.white);
+    hpIntLabel = new JLabel();
+    hpIntLabel.setFont(normalFont);
+    hpIntLabel.setForeground(Color.white);
 
     //dice
     diceButtonPanel = new JPanel();
-    diceButtonPanel.setBounds(700, 450, 100, 150);
-    diceButtonPanel.setBackground(Color.black);
+    diceButtonPanel.setBounds(700,400, 100, 200);
+    diceButtonPanel.setOpaque(false);
     diceButtonPanel.setLayout(new GridLayout(2,1));
+
+    diceImgLabel = new JLabel(); 
+    diceImgLabel.setIcon(new ImageIcon("icon/d20.png")); 
+    diceImgSize = diceImgLabel.getPreferredSize(); 
+    diceImgLabel.setBounds(676, 375, diceImgSize.width, diceImgSize.height);
+
     
     diceTextField = new JTextField("24");
-    diceTextField.setBackground(Color.red);
+    diceTextField.setOpaque(false);
     diceTextField.setForeground(Color.white);
     diceTextField.setFont(normalFont);
-    diceTextField.setBounds(700, 450, 20, 20);
     diceTextField.setEditable(false);
+    diceTextField.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+    diceTextField.setHorizontalAlignment(JTextField.CENTER);
 
     diceButton = new JButton("roll");
-    diceButton.setBackground(Color.green);
+    diceButton.setBackground(Color.black);
     diceButton.setForeground(Color.white);
     diceButton.setFont(normalFont);
     diceButton.setFocusPainted(false);
     diceButton.addActionListener(cHandler);
     diceButton.setActionCommand("roll");
 
+    // diceButtonPanel.add(diceImgLabel);
     diceButtonPanel.add(diceTextField);
     diceButtonPanel.add(diceButton);
 
@@ -202,16 +213,19 @@ public class UI {
     choiceButtonPanel.add(choice3);
     
     playerPanel.add(floorLabel);
-    playerPanel.add(floorLabelInt);
+    playerPanel.add(floorIntLabel);
     playerPanel.add(goldLabel);
-    playerPanel.add(goldLabelInt);
+    playerPanel.add(goldIntLabel);
     playerPanel.add(hpLabel);
-    playerPanel.add(hpLabelInt);
+    playerPanel.add(hpIntLabel);
 
     con.add(playerPanel);
     con.add(mainTextPanel);
     con.add(choiceButtonPanel);
     con.add(diceButtonPanel);
+
+    con.add(diceImgLabel);
+
 
     //setVisible
     con.setVisible(false);

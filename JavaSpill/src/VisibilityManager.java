@@ -17,6 +17,7 @@ public class VisibilityManager {
     ui.playerPanel.setVisible(false);
     ui.mainTextPanel.setVisible(false);
     ui.diceButtonPanel.setVisible(false);
+    ui.diceImgLabel.setVisible(false);
     ui.choiceButtonPanel.setVisible(false);
   }
   public void enterName(){
@@ -32,6 +33,7 @@ public class VisibilityManager {
     ui.playerPanel.setVisible(false);
     ui.mainTextPanel.setVisible(true);
     ui.diceButtonPanel.setVisible(false);
+    ui.diceImgLabel.setVisible(false);
     ui.choiceButtonPanel.setVisible(false);
   }
   public void showGamescreen(){
@@ -48,10 +50,7 @@ public class VisibilityManager {
     ui.playerPanel.setVisible(true);
     ui.mainTextPanel.setVisible(true);
     ui.diceButtonPanel.setVisible(true);
+    ui.diceImgLabel.setVisible(true);
     ui.choiceButtonPanel.setVisible(true);
-
-    ui.choice1.setVisible(true);
-    ui.choice2.setVisible(true);
-    ui.choice3.setVisible(true);
   }
 }
