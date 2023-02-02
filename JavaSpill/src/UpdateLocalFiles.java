@@ -10,7 +10,7 @@ import java.io.FileWriter;
 public class UpdateLocalFiles {
 
   // info-en du trenger for å koble til database;
-  String ip = "10.0.0.2";
+  String ip = "localhost";
   String port = "3306";
   String username = "Klient";
   String password = "n]ua2BeXUF!ci[mK";
