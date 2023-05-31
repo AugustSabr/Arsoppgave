@@ -270,7 +270,7 @@ public class UI {
     window.getContentPane().setBackground(Color.black);
     window.setLayout(null);
     window.setVisible(true);
-    iconImg = new ImageIcon("img/icons/gameicon.png");
+    iconImg = new ImageIcon("localFiles/img/icons/gameicon.png");
     window.setIconImage(iconImg.getImage());
     con = window.getContentPane();
 
@@ -463,37 +463,37 @@ public class UI {
 
   public void drawMap(){
     for (int i = 0; i < mapLabelList.size(); i++) {
-      mapLabelList.get(i).setIcon(new ImageIcon("img/miniMap/"+mapString.get((int)Math.floor(i/10)).get(i % 10)+".png"));
-      // mapLabelList.get(i).setIcon(new ImageIcon("img/miniMap/"+map.maps.get(map.floor-1).get((int)Math.floor(i/10)).get(i % 10)+".png"));
+      mapLabelList.get(i).setIcon(new ImageIcon("localFiles/img/miniMap/"+mapString.get((int)Math.floor(i/10)).get(i % 10)+".png"));
+      // mapLabelList.get(i).setIcon(new ImageIcon("localFiles/img/miniMap/"+map.maps.get(map.floor-1).get((int)Math.floor(i/10)).get(i % 10)+".png"));
     }
   }
 
   public void drawplayer(){
-    playerPosLabel.setIcon(new ImageIcon("img/miniMap/"+ map.getFacing() + "Player.png"));
+    playerPosLabel.setIcon(new ImageIcon("localFiles/img/miniMap/"+ map.getFacing() + "Player.png"));
     playerPosImgSize = playerPosLabel.getPreferredSize(); 
     playerPosLabel.setBounds(625 + (map.x * 20), 440 + (map.y * 20), playerPosImgSize.width, playerPosImgSize.height);
   }
 
     public void drawRoom(String file){
-    roomImgLabel.setIcon(new ImageIcon("img/rooms/"+file+".png"));
+    roomImgLabel.setIcon(new ImageIcon("localFiles/img/rooms/"+file+".png"));
     roomImgSize = roomImgLabel.getPreferredSize(); 
     roomImgLabel.setBounds(10, 10, roomImgSize.width, roomImgSize.height);
   }
 
   public void drawStructure(String file){
-    structureImgLabel.setIcon(new ImageIcon("img/structure/"+file+".png"));
+    structureImgLabel.setIcon(new ImageIcon("localFiles/img/structure/"+file+".png"));
     structureImgSize = structureImgLabel.getPreferredSize(); 
     structureImgLabel.setBounds(10, 10, structureImgSize.width, structureImgSize.height);
   }
 
   public void drawEncounter(String category, String file){
-    encounterImgLabel.setIcon(new ImageIcon("img/"+category+"/"+file));
+    encounterImgLabel.setIcon(new ImageIcon("localFiles/img/"+category+"/"+file));
     encounterImgSize = encounterImgLabel.getPreferredSize(); 
     encounterImgLabel.setBounds(10, 10, encounterImgSize.width, encounterImgSize.height);
   }
 
   public void drawAttack(){
-    attackLabel.setIcon(new ImageIcon("img/attack.gif"));
+    attackLabel.setIcon(new ImageIcon("localFiles/img/attack.gif"));
     attackImgSize = attackLabel.getPreferredSize(); 
     attackLabel.setBounds(10, 10, attackImgSize.width, attackImgSize.height);
     Timer timer = new Timer(533, (ActionListener) new ActionListener() {

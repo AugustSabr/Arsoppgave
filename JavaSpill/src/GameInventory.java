@@ -16,7 +16,7 @@ public class GameInventory {
   public GameInventory(){
     for (int i = 0; i < categories.length; i++){
       try {
-        File myObj = new File("localFiles/" + categories[i] + ".txt");//henter info fra relevant fil
+        File myObj = new File("localFiles/txt/" + categories[i] + ".txt");//henter info fra relevant fil
         Scanner myReader = new Scanner(myObj);
         while (myReader.hasNextLine()) {
           switch(categories[i]){//lager objects av all infoen i filen

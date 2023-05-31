@@ -306,7 +306,7 @@ public class Map {
     key.c = "openInventory";
     switch(s){
       case "up":
-        if(ui.roomImgLabel.getIcon().toString().equals("img/rooms/crossroad.png") || ui.roomImgLabel.getIcon().toString().equals("img/rooms/front.png") || ui.roomImgLabel.getIcon().toString().equals("img/rooms/frontRight.png") || ui.roomImgLabel.getIcon().toString().equals("img/rooms/frontLeft.png")){
+        if(ui.roomImgLabel.getIcon().toString().equals("localFiles/img/rooms/crossroad.png") || ui.roomImgLabel.getIcon().toString().equals("localFiles/img/rooms/front.png") || ui.roomImgLabel.getIcon().toString().equals("localFiles/img/rooms/frontRight.png") || ui.roomImgLabel.getIcon().toString().equals("localFiles/img/rooms/frontLeft.png")){
           switch(facing){
             case "north": y=y-1; draw(); break;
             case "south": y++; draw(); break;
@@ -324,7 +324,7 @@ public class Map {
         }
       } break;
       case "right":
-      if(ui.roomImgLabel.getIcon().toString().equals("img/rooms/crossroad.png") || ui.roomImgLabel.getIcon().toString().equals("img/rooms/frontRight.png") || ui.roomImgLabel.getIcon().toString().equals("img/rooms/right.png") || ui.roomImgLabel.getIcon().toString().equals("img/rooms/t-intersection.png")){
+      if(ui.roomImgLabel.getIcon().toString().equals("localFiles/img/rooms/crossroad.png") || ui.roomImgLabel.getIcon().toString().equals("localFiles/img/rooms/frontRight.png") || ui.roomImgLabel.getIcon().toString().equals("localFiles/img/rooms/right.png") || ui.roomImgLabel.getIcon().toString().equals("localFiles/img/rooms/t-intersection.png")){
         switch(facing){
           case "north": x++; facing="east"; draw(); break;
           case "south": x=x-1; facing="west"; draw(); break;
@@ -333,7 +333,7 @@ public class Map {
         }
       }break;
       case "left":
-      if(ui.roomImgLabel.getIcon().toString().equals("img/rooms/crossroad.png") || ui.roomImgLabel.getIcon().toString().equals("img/rooms/frontLeft.png") || ui.roomImgLabel.getIcon().toString().equals("img/rooms/left.png") || ui.roomImgLabel.getIcon().toString().equals("img/rooms/t-intersection.png")){
+      if(ui.roomImgLabel.getIcon().toString().equals("localFiles/img/rooms/crossroad.png") || ui.roomImgLabel.getIcon().toString().equals("localFiles/img/rooms/frontLeft.png") || ui.roomImgLabel.getIcon().toString().equals("localFiles/img/rooms/left.png") || ui.roomImgLabel.getIcon().toString().equals("localFiles/img/rooms/t-intersection.png")){
         switch(facing){
           case "north": x=x-1; facing="west"; draw(); break;
           case "south": x++; facing="east"; draw(); break;
