@@ -1,0 +1,43 @@
+Prosjektraport
+	viktige valg og prioriteringer
+		hvilke kode språk?
+		hvilken server?
+		hvilken database?
+	Risikoanalyse
+		tabell
+		backup rutiner
+	lovverk
+		liste opp relevante loverk
+		forklare hvordan de påvirker prosjektet mit
+	netverksdiagram
+		et visuelt diagram som viser hvordan netverket runt prosjektet mit er satt opp
+	annen teknisk dokumentasjon
+		arvids exel
+	egenevaluering
+	kilder
+
+serverpc
+	apche
+		github
+	postgress
+	reverse proxy?
+	automatisk backup?
+
+nettside
+	faq
+		sende inn og svare på spørsmål?
+	innlogging
+		Autentisering
+		Autorisering
+	opplæringsmatriell
+		brukerveiledingig til utvikler
+		intoduksjonsvideo til sluttbruke
+
+spill
+	visuelt med bilder
+		lage alle bilder
+	max health potion
+	Blessings
+	expiriance and stat system
+	loot enemies?
+	luck and crit

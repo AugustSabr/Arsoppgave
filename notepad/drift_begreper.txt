@@ -1,0 +1,37 @@
+IPv4 Address:
+	er en 32 bit adresse, det er nesten 4,3 miliarder mulige adresser under ip4, det høres kansjke mye ut men vi er snart 8 milliarder mensker og alle mensker vil i snitt trenge flere ipadresser.
+Subnet mask:
+	brukes får å delle in et netverk så maskiner kan kontaket maskiner inne for samme netverk
+Default Gateway:
+	ip adressen til ruteren som andre maskiner må bruke for å kontakte maskiner utenfor sitt lokale netverk
+DHCP (Dynamic Host Configuration Protocol):
+	brukes av ruteren for å automatisk gi brukere en ip adresse
+IPv6 Address:
+	er en 128 bit hexadesimal adresse som har 3,4*10^(38) mulige adresser, mer en nok en det menskeheten kommer til å trenge
+DNS Servers:
+	er servere som inneholder koblingen mellom mange ipadresser og deres domener
+MAC address:
+	er en statisk, fysisk adresse for alle enheter som kan koble seg på et netverk
+Proxy:
+
+ports:
+	TFP port 20 og 21 (File transfer protocol)
+		brukes for å overføre filler melleom en klient og en server
+	SSH port 22 (Secure shell)
+		er en av mange "tunelling protocols" som åpner en tunell for å sende informasjon fram og tilbake mellom to maskiner over et netverk
+	SMTP port 25 (Simple Mail Transfer Protocol)
+		e-mail sin egen port
+	DNS port 53 (Domain Name System)
+		lar brukere skrive inn domain names isteden for ip adresser, og lagrer tidligere besøkte ip-er så det er raskt å besøke igjenn
+	HTTP port 80 (Hypertext Transfer Protocol)
+		er den porten maskiner bruker når de kobler seg på www
+		TCP (Transmission Control Protocol)
+			brukes for å starte opp en sikker tilkobling
+	NTP port 123 (Network Time Protocol)
+		lar klokker på en maskin synke med hverandre, noe som er kritisk for mange typer encryption
+	BGP port 179 (Border Gateway Protocol)
+		brukes for å lage effektive ruter mellom store netverk, det er disse store netverkene som sammen er internettet
+	HTTPS port 443 (HTTP Secure)
+		samme som http bare med encryption
+	RDP port 3389 (Remote Desktop Protocol)
+		også en tunneling protocol men denne lar brukern se descktopen til en annen pc over et netverk

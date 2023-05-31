@@ -1,0 +1,148 @@
+Hostname:
+AugustServerPc
+Username:
+august5
+Password:
+(samme som pc hjemme)
+serveren er på /var/www/Arsoppgave/JavaGame_AdminSite
+
+// sudo for å gjøre komando med admin priviligerier
+// cd for å åpne mappe
+// ls/dir se hva som er i mappen
+// nano for å opne fil med nano teksteditor
+// cat for å lese fil
+// apt upgrade for å opgradere shit
+// rm remove fil/mappe
+// cd / tar geg til root
+// mkdir lager en directory/mappe
+// sudo blkid
+// sudo mount /dev/sda1 /media/usb
+// sudo umount /media/usbs
+// readlink -f filename // finner filbanen til fil
+
+UFW:
+sudo apt install ufw // instalerer firewall
+sudo ufw default deny incoming // setter default instilinger
+sudo ufw default allow outgoing
+sudo ufw allow ssh / sudo ufw allow 22
+sudo ufw allow http / sudo ufw allow 80
+sudo ufw allow https / sudo ufw allow 443
+sudo ufw allow from "din ipadresse"
+sudo ufw status numbered
+sudo ufw status verbose
+sudo ufw reset
+sudo ufw enable/disable
+
+SSH:
+sudo apt install openssh-server // instalerer ssh får å kunne bruke laptop
+sudo nano /etc/network/interfaces // åpner interfaces filen får å sette statisk ip
+
+//inne i interfaces filen:
+# the loopback network interfaces
+auto lo
+iface lo inet loopback
+# The primary network interface
+auto enp2s0
+iface enp2s0 inet static
+	address "din statiske ip-adresse"
+	netmask "velg en netmask som passer med ip-adressen"
+	gateway "ip-en til rutern/switch-en"
+
+sudo systemctl restart networking // restarter
+// ip a får å se netverk info
+
+APACHE:
+sudo apt update // opdaterer apt som brukes for å laste ned shit
+sudo apt install apache2 //
+sudo ufw app list
+sudo ufw allow 'WWW'
+sudo systemctl status apache2 // ser status til apache
+sudo systemctl is-enabled apache2 // sjekker om apache er på
+hostname -I // ser hostname som nå bare er ipadressen
+sudo systemctl stop apache2
+sudo systemctl start apache2
+sudo systemctl restart apache2
+sudo systemctl enable/disable apache2
+
+virtual host (får og kunne hoste flere servere)
+sudo mkdir -p /var/www/Arsoppgave // lager en virituel domene
+sudo chown -R $USER:$USER /var/www/Arsoppgave // gir eierskap til brukeren du er på nå
+sudo chmod -R 755 /var/www/Arsoppgave // gjør at kun denne profilen kan endre mens andre på pc-en kan se
+nano /etc/apache2/sites-available/Arsoppgave.conf // må lage en config filen får å bruke den
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    ServerName your_domain
+    ServerAlias www.your_domain
+    DocumentRoot /var/www/your_domain
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+sudo a2ensite Arsoppgave.conf // enabler config filen
+sudo a2dissite 000-default.conf // disabler default serveren for å heller bruke domene vi lagde
+sudo apache2ctl configtest // sjekker om configuration er satt opp riktig
+sudo systemctl restart apache2 // restarter apache
+
+sudo apt-get install git git-core
+clone https://github.com/AugustSabr/JavaGame_AdminSite.git
+git pull
+
+PHP:
+sudo apt install php // last ned php til apache serveren
+php -v // sjekk versonen php du har
+sudo tail -f /var/log/apache2/error.log // se errorlog
+
+
+GNUPG:
+sudo apt update
+sudo apt -y install gnupg // instalerer GNU privacy guard
+
+POSTGRESQL:
+sudo apt update
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main 15" > /etc/apt/sources.list.d/pgdg.list' // legger til postgres til sourceas.list
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - // importerer repository signing key
+sudo apt update
+du må kansje opgradere apt list  
+sudo apt-get -y install postgresql-15
+sudo systemctl status postgresql
+sudo /etc/init.d/postgresql restart
+
+PHPPGAdmin:
+sudo apt install -y phppgadmin apache2
+sudo nano /etc/phppgadmin/config.inc.php
+endre to linjer
+$conf['extra_login_security'] = false;
+$conf['owned_only'] = true;
+sudo nano /etc/apache2/conf-enabled/phppgadmin.conf
+endre Require local til Require all granted
+sudo nano /etc/phppgadmin/config.inc.php
+
+
+sudo -u postgres psql
+exit
+\l viser alle databaser
+CREATE DATABASE testdb;
+\c testdb // åpner databasen
+\dt // ser tables i databasen
+\d "tableName" / åpner table
+drop table department;
+-----------------------jeg bruker ikke schema
+create schema myschema;
+testdb=# create table myschema.company(
+   ID   INT              NOT NULL,
+   NAME VARCHAR (20)     NOT NULL,
+   AGE  INT              NOT NULL,
+   ADDRESS  CHAR (25),
+   SALARY   DECIMAL (18, 2),
+   PRIMARY KEY (ID)
+);
+DROP SCHEMA myschema CASCADE;
+\dn // ser alle schema
+---------------------
+
+yum install php-pgsql
+
+/home/august5/pg_hba.conf
+host  all  all  10.0.0.0/24  trust
+
+
+sudo su -
