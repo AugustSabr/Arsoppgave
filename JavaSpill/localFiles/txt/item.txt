@@ -1,0 +1,12 @@
+healing potion
+placeholder.png
+35
+1
+key
+key.png
+50
+1
+broken bow
+placeholder.png
+35
+1

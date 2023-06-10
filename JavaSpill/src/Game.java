@@ -1,44 +1,84 @@
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-public class Game {
-  private static Player player;
-  private ChoiceHandler cHandler = new ChoiceHandler();// choiceHandler er en class jeg lagde selv. sel lenger nede
-  private UI ui = new UI();
-  private VisibilityManager vm = new VisibilityManager(ui);//sender med UI fordi det er egt bare det VisibilityManager gjør visible eller ikke 
-  private Game game = this;
-  private GameInventory in;
-  private Room room;
 
-  String nextPosition1, nextPosition2, nextPosition3, roll = "funRoll";
+// import java.io.FileOutputStream;
+// import java.io.ObjectOutputStream;
+
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+public class Game {
+  private Player player;
+  private UI ui = new UI(this);
+  private VisibilityManager vm = new VisibilityManager(ui);
+  private ChoiceHandler cHandler = new ChoiceHandler();
+  private Map map;
+  private _KeyListener key;
+  private GameInventory in;
+  private Encounter e;
+  public String c10, c11;
   public static void main(String[] args) {
     new Game();
   }
 
-  public Game(){
-    ui.createUI(cHandler);//sender med choiceHandler for at knappene jeg lager i UI skal ha en effect
+  public Game() {
+    ui.createUI(cHandler);
     vm.showTitleScreen();
   }
-  
+
+
   public class ChoiceHandler implements ActionListener{// ChoiceHandler arver fra ActionListener
     public void actionPerformed(ActionEvent event){//ActionCommand bruker for å skille knappene fra hverandre. en slags id.
       String yourChoice = event.getActionCommand();
+      ui.window.requestFocus();
 
       switch(yourChoice){//isteden for å endre ActionCommand endrer jeg en tekst variabel nextPosition for å velge hva hovedknappene gjør
         case "start":
           in = new GameInventory();//lager en inventory av de lokale filene
-          room = new Room(game, ui, vm, in); //lager et room og sender med alle nødvendige objects så room kan endre på de underveis
+          // room = new Room(game, ui, vm, in); //lager et room og sender med alle nødvendige objects så room kan endre på de underveis
           vm.enterName(); break;
         case "update": new UpdateLocalFiles(); break;
-        case "makePlayer": room.makePlayer(); break;
-        case "c1": room.selectPosition(nextPosition1); break;
-        case "c2": room.selectPosition(nextPosition2); break;
-        case "c3": room.selectPosition(nextPosition3); break;
-        case "roll": room.selectPosition(roll); roll = "funRoll"; break;// skjører roll, og edrer den til funRoll så du ikke kan prøve omigjen
+        case "makePlayer": makePlayer(); break;
+        case "c0": ui.selctbutton(0); break;
+        case "c1": ui.selctbutton(1); break;
+        case "c2": ui.selctbutton(2); break;
+        case "c3": ui.selctbutton(3); break;
+        case "c4": ui.selctbutton(4); break;
+        case "c5": ui.selctbutton(5); break;
+        case "c6": ui.selctbutton(6); break;
+        case "c7": ui.selctbutton(7); break;
+        case "c8": ui.selctbutton(8); break;
+        case "c9": ui.selctbutton(9); break;
+        case "c10": e.selectPosition(c10); break;
+        case "c11": e.selectPosition(c11); break;
       }
     }
   }
   
-  public static Player getPlayer(){
-    return player;
+  public void makePlayer(){
+    try {
+      ObjectInputStream input = new ObjectInputStream(new FileInputStream("saves/" + ui.inputTextField.getText() + ".dat"));
+      player = (Player) input.readObject();
+      input.close();
+      ui.mainTextArea.setText(player.getName() + " is back for more");
+    } catch (Exception e){
+      player = new Player(ui.inputTextField.getText());
+      ui.mainTextArea.setText(player.getName() + " started a new game");
+
+      System.err.println("Couldnt load game. Created new player.");
+      System.err.println("Error message: " + e + "\n");
+      // e.printStackTrace();
+    }
+    // for (int i = 0; i < 100; i++) {
+    //   System.out.println((int)Math.floor(i/10));
+    // }
+    ui.addGameInventory(in);
+    ui.addPlayer(player);
+    vm.showGamescreen();
+    e = new Encounter(ui, player, in, vm, this);
+    ui.addEncounter(e);
+    map = new Map(ui, e, vm, in, 3, 0, "east");
+    // ui.drawMap();
+    key = new _KeyListener(map, ui, e);
+    vm.addKeyListener(key);
   }
 }

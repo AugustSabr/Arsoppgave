@@ -1,0 +1,50 @@
+worn cloths
+wornCloths.png
+10
+10
+1
+wooden helmet
+woodenHelmet.png
+15
+15
+1
+cactus armor
+placeholder.png
+20
+20
+1
+mage robe
+placeholder.png
+35
+35
+2
+assassin cloak
+placeholder.png
+40
+40
+2
+gladiator armor
+placeholder.png
+55
+55
+2
+iron armor
+placeholder.png
+60
+60
+2
+gold armor
+placeholder.png
+70
+70
+3
+viking armor
+placeholder.png
+70
+70
+3
+armor of achilles
+placeholder.png
+85
+85
+3

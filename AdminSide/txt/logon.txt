@@ -1,0 +1,30 @@
+<?php
+  if(isset($_POST['submit'])){
+    //Gjøre om POST-data til variabler
+    $usrn = mysqli_real_escape_string($conn, $_POST['username']);            
+    $pwd = mysqli_real_escape_string($conn, $_POST['passord']);
+
+    $sql = "SELECT password FROM users where username='$usrn'";
+
+    $result = mysqli_query($conn, $sql)
+      or die('Error connecting to database.');
+
+    if (mysqli_num_rows($result) > 0) {
+      while($row = mysqli_fetch_assoc($result)) {
+        if (password_verify($pwd, $row["password"])) {
+          $_SESSION['all'] = true;
+          header("Location: admin.php");
+        } else {
+          echo '<p>feil brukernavn eller passord</p>';
+        }
+      }
+    } else {
+      echo '<p>feil brukernavn eller passord</p>';
+    }
+  }
+//create new
+// $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+// $sql = "INSERT INTO users (username, password) VALUES ('$usrn', '$hashedPwd');";
+// $result = mysqli_query($conn, $sql)
+//     or die('Error querying database.');
+?>

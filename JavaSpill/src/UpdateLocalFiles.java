@@ -1,6 +1,7 @@
-// libaries fra mysql-connector-j-8.0.31.jar
+// libaries fra postgresql-42.6.0.jar
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -10,53 +11,56 @@ import java.io.FileWriter;
 public class UpdateLocalFiles {
 
   // info-en du trenger for å koble til database;
-  String ip = "10.0.0.2";
-  String port = "3306";
-  String username = "Klient";
-  String password = "n]ua2BeXUF!ci[mK";
-  String database = "game4";
+  private String ip = "10.0.0.70";
+  private String port = "5432";
+  private String username = "postgres";
+  private String password = "123";
+  private String database = "game4";
 
-  String[] categories = {"weapon", "armor", "blessing", "enemy"};
+  private String[] categories = {"weapon", "armor", "blessing", "enemy"};
   
   public UpdateLocalFiles(){
     try {
       Connection con = getConection();
       for (int i = 0; i < categories.length; i++){// repeterer dette for alle relevante tabellene
-
-        PreparedStatement statement = con.prepareStatement("SELECT * FROM `" + categories[i] + "s`");
+        PreparedStatement statement = con.prepareStatement("SELECT * FROM \"gameTables\"."+ categories[i]);
         ResultSet result = statement.executeQuery();
+        System.out.println(result);
 
-        // sjekker hvilke kolloner som finnes i tabbelen for å vite hva den skal lagre
-        Boolean tierExists = con.prepareStatement("SHOW COLUMNS FROM " + categories[i] + "s LIKE '" + categories[i] + "Tier'").executeQuery().next();
-        Boolean effectExists = con.prepareStatement("SHOW COLUMNS FROM " + categories[i] + "s LIKE '" + categories[i] + "Effect'").executeQuery().next();
-        Boolean damageExists = con.prepareStatement("SHOW COLUMNS FROM " + categories[i] + "s LIKE '" + categories[i] + "Damage'").executeQuery().next();
-        Boolean healthExists = con.prepareStatement("SHOW COLUMNS FROM " + categories[i] + "s LIKE '" + categories[i] + "Health'").executeQuery().next();
+        // PreparedStatement statement = con.prepareStatement("SELECT * FROM `" + categories[i] + "s`");
+        // ResultSet result = statement.executeQuery();
 
-        ArrayList<String> array = new ArrayList<String>();
-        while(result.next()){//går gjennom alle rader i tabbelen
-          array.add(result.getString(categories[i] + "Type"));
+        // // sjekker hvilke kolloner som finnes i tabbelen for å vite hva den skal lagre
+        // Boolean tierExists = con.prepareStatement("SHOW COLUMNS FROM " + categories[i] + "s LIKE '" + categories[i] + "Tier'").executeQuery().next();
+        // Boolean effectExists = con.prepareStatement("SHOW COLUMNS FROM " + categories[i] + "s LIKE '" + categories[i] + "Effect'").executeQuery().next();
+        // Boolean damageExists = con.prepareStatement("SHOW COLUMNS FROM " + categories[i] + "s LIKE '" + categories[i] + "Damage'").executeQuery().next();
+        // Boolean healthExists = con.prepareStatement("SHOW COLUMNS FROM " + categories[i] + "s LIKE '" + categories[i] + "Health'").executeQuery().next();
 
-          // hvis det finnnes legger vi det til i tabbellen
-          if(tierExists != false){
-            array.add(result.getString(categories[i] + "Tier"));
-          }
-          if(effectExists != false){
-            array.add(result.getString(categories[i] + "Effect"));
-          }
-          if(damageExists != false){
-            array.add(result.getString(categories[i] + "Damage"));
-          }
-          if(healthExists != false){
-            array.add(result.getString(categories[i] + "Health"));
-          }
-        }
+        // ArrayList<String> array = new ArrayList<String>();
+        // while(result.next()){//går gjennom alle rader i tabbelen
+        //   array.add(result.getString(categories[i] + "Type"));
 
-        //lager og skriver i en fil
-        FileWriter myWriter = new FileWriter("localFiles/" + categories[i] +".txt");
-        for(int g = 0; g < array.size(); g++){
-          myWriter.write(array.get(g) + System.lineSeparator());
-        }
-        myWriter.close();
+        //   // hvis det finnnes legger vi det til i tabbellen
+        //   if(tierExists != false){
+        //     array.add(result.getString(categories[i] + "Tier"));
+        //   }
+        //   if(effectExists != false){
+        //     array.add(result.getString(categories[i] + "Effect"));
+        //   }
+        //   if(damageExists != false){
+        //     array.add(result.getString(categories[i] + "Damage"));
+        //   }
+        //   if(healthExists != false){
+        //     array.add(result.getString(categories[i] + "Health"));
+        //   }
+        // }
+
+        // //lager og skriver i en fil
+        // FileWriter myWriter = new FileWriter("localFiles/" + categories[i] +".txt");
+        // for(int g = 0; g < array.size(); g++){
+        //   myWriter.write(array.get(g) + System.lineSeparator());
+        // }
+        // myWriter.close();
       }
       System.err.println("\nSuccessfully updated locale files.");
     } catch (Exception e) {
@@ -66,21 +70,16 @@ public class UpdateLocalFiles {
     }
   }
 
-  public Connection getConection() throws Exception{// funksjonen for å koble till databasen, denne skjønner jeg ikke helt
+  public Connection getConection() throws Exception{
+    Connection conn = null;
     try {
-      String driver = "com.mysql.jdbc.Driver";
-      String url = "jdbc:mysql://" + ip + ":" + port + "/" + database;
-      Class.forName(driver);
-
-      Connection conn = DriverManager.getConnection(url, username, password);
-
-      return conn;
-    } catch (Exception e) {
+      Class.forName("org.postgresql.Driver");
+      conn = DriverManager.getConnection("jdbc:postgresql://"+ip+":" + port + "/" + database, username, password);
+    } catch (SQLException  e) {
       System.err.println("\nCouldnt connect to the database. Do you have internet?");
-      System.err.println("Error message: " + e + "\n");
-      // e.printStackTrace();
-      return null;
+      System.err.println("Error message: " + e.getMessage() + "\n");
     }
+    return conn;
   }
 }
 

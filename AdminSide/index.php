@@ -1,185 +1,154 @@
-<?php
-  include 'topp.html';
-  include 'php/createTabels.php';
-?>
-  <h1>Database oversikt</h1>
-  <div>
-    <div>
-      <?php
-      include 'php/connect.php';
-      $sql = "SELECT * FROM `Weapons`";
-      $result = mysqli_query($conn, $sql);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <title>Homepage</title>
+  <?php
+    session_start();
+    if (isset($_SESSION['privileges'])) {
+      unset($_SESSION['privileges']);
+    }
+    include 'php/connect.php';
+  ?>
+</head>
+<body id="ibody">
 
-      if (mysqli_num_rows($result) > 0) {
-        echo "<h2>Weapons</h2>";
-        while($row = mysqli_fetch_assoc($result)) {
-          echo "
-          <form method='POST' name='' action='php/update.php'>
-          <input type='hidden' name='dbtable' value='weapon'>
-          <label for='type'>Id: " . $row["id"]. "</label>
-          <input type='hidden' name='id' value=" . $row["id"]. ">
-          <label for='type'>Tier:</label>
-          <input type='text' name='weaponTier' style='width: 10px' value='" . $row["weaponTier"] . "'>
-          <label for='type'>Type:</label>
-          <input type='text' name='weaponType' style='width: 95px' value='" . $row["weaponType"] . "'>
-          <label>Damage:</label>
-          <input type='number' name='weaponEffect' style='width: 30px' value='" . $row["weaponEffect"]. "'>
-          <button type='hidden' name='action' value='update'>update</button>
-          <button type='submit' name='action' value='remove'>delete</button>
-          </form>";
-          echo "------------------------------------------------------------------------------------";
-        }
-      } else {
-        echo "0 results";
-      }
+<span id="modalButton" class="loginORout">Login as admin</span>
 
-      mysqli_close($conn);
-      ?>
-      <form method="POST" name="" action="php/insert.php">
-        <input type="hidden" name="dbtable" value="weapon">
-        <label>Tier:</label>
-        <input type="number" name="weaponTier" style='width: 10px;'>
-        <label for="type">Weapon type:</label>
-        <input type="text" name="weaponType" id="weaponType" style='width: 95px'>
-        <label>Weapon damage:</label>
-        <input type="number" name="weaponEffect" style='width: 30px'>
-
-        <button type="submit" name="insert">Save</button>
-      </form>
-    </div>
-
-    <div>
-      <?php
-      include 'php/connect.php';
-      $sql = "SELECT * FROM `Armors`";
-      $result = mysqli_query($conn, $sql);
-
-      if (mysqli_num_rows($result) > 0) {
-        echo "<h2>Armors</h2>";
-        while($row = mysqli_fetch_assoc($result)) {
-          echo "
-          <form method='POST' name='' action='php/update.php'>
-          <input type='hidden' name='dbtable' value='armor'>
-          <label for='type'>Id: " . $row["id"]. "</label>
-          <input type='hidden' name='id' value=" . $row["id"]. ">
-          <label for='type'>Tier:</label>
-          <input type='text' name='armorTier' style='width: 10px' value='" . $row["armorTier"] . "'>
-          <label for='type'>Type:</label>
-          <input type='text' name='armorType' style='width: 95px' value='" . $row["armorType"] . "'>
-          <label>Defence:</label>
-          <input type='number' name='armorEffect' style='width: 30px' value='" . $row["armorEffect"]. "'>
-          <button type='hidden' name='action' value='update'>update</button>
-          <button type='submit' name='action' value='remove'>delete</button>
-          </form>";
-
-          echo "------------------------------------------------------------------------------------";
-        }
-      } else {
-        echo "0 results";
-      }
-
-      mysqli_close($conn);
-      ?>
-      <form method="POST" action="php/insert.php">
-        <input type='hidden' name='dbtable' value="armor">
-        <label>Tier:</label>
-        <input type="number" name="armorTier" style='width: 10px;'>
-        <label for="type" >Armor type:</label>
-        <input type="text" name="armorType" style='width: 95px'>
-        <label>Armor defence:</label>
-        <input type="number" name="armorEffect" style='width: 30px'>
-
-        <button type="submit" name="insert">Save</button>
+<!-- The Modal -->
+<div id="myModal" class="modal" style="margin: 0px;">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close loginORout">&times;</span>
+    <p>Vennligst logg inn:</p>
+      <form method="post">
+        <label for="username">Brukernavn:</label>
+        <input type="text" name="username" /><br />
+        <label for="passord">Passord:</label>
+        <input type="password" name="passord" /><br />
+        
+        <input type="submit" value="Logg inn" name="submit" />
       </form>
 
       <?php
-      include 'php/connect.php';
-      $sql = "SELECT * FROM `Blessings`";
-      $result = mysqli_query($conn, $sql);
-
-      if (mysqli_num_rows($result) > 0) {
-        echo "<h2>Blessings</h2>";
-        while($row = mysqli_fetch_assoc($result)) {
-          echo "
-          <form method='POST' name='' action='php/update.php'>
-          <input type='hidden' name='dbtable' value='blessing'>
-          <label for='type'>Id: " . $row["id"]. "</label>
-          <input type='hidden' name='id' value=" . $row["id"]. ">
-          <label for='type'>Type:</label>
-          <input type='text' name='blessingType' style='width: 95px' value='" . $row["blessingType"] . "'>
-          <label>Effect:</label>
-          <input type='number' name='blessingEffect' style='width: 30px' value='" . $row["blessingEffect"]. "'>
-          <button type='hidden' name='action' value='update'>update</button>
-          <button type='submit' name='action' value='remove'>delete</button>
-          </form>";
-
-          echo "----------------------------------------------------------------------";
+        if(isset($_POST['submit'])){
+          //Gjøre om POST-data til variabler
+          $usrn = mysqli_real_escape_string($conn, $_POST['username']);            
+          $pwd = mysqli_real_escape_string($conn, $_POST['passord']);
+        
+          $sql = "SELECT * FROM users where username='$usrn'";
+        
+          $result = mysqli_query($conn, $sql)
+            or die('Error connecting to database.');
+        
+          if (mysqli_num_rows($result) > 0) {
+            while($row = mysqli_fetch_assoc($result)) {
+              if (password_verify($pwd, $row["password"])) {
+                mysqli_query($conn, "UPDATE users SET usrLoginTime = CURRENT_TIMESTAMP() WHERE username='$usrn'");
+                $_SESSION["privileges"] = $row["privileges"];
+                header("Location: admin.php");
+              } else {
+                echo '<p>feil brukernavn eller passord</p>';
+              }
+            }
+          } else {
+            echo '<p>feil brukernavn eller passord</p>';
+          }
         }
-      } else {
-        echo "0 results";
-      }
-
-      mysqli_close($conn);
       ?>
-      <form method="POST" name="" action="php/insert.php">
-        <input type='hidden' name='dbtable' value="blessing">
-        <label for="type">Blessing type:</label>
-        <input type="text" name="blessingType" style='width: 95px'>
-        <label>Blessing effect:</label>
-        <input type="number" name="blessingEffect" style='width: 30px'>
-
-        <button type="submit" name="insert">Save</button>
-      </form>
-    </div>
-
-    <div>
-      <?php
-      include 'php/connect.php';
-      $sql = "SELECT * FROM `enemys`";
-      $result = mysqli_query($conn, $sql);
-
-      if (mysqli_num_rows($result) > 0) {
-        echo "<h2>Enemies</h2>";
-        while($row = mysqli_fetch_assoc($result)) {
-          echo "
-          <form method='POST' name='' action='php/update.php'>
-          <input type='hidden' name='dbtable' value='enemy'>
-          <label for='type'>Id: " . $row["id"]. "</label>
-          <input type='hidden' name='id' value=" . $row["id"]. ">
-          <label for='type'>Tier:</label>
-          <input type='text' name='enemyTier' style='width: 10px' value='" . $row["enemyTier"] . "'>
-          <label for='type'>Type:</label>
-          <input type='text' name='enemyType' style='width: 95px' value='" . $row["enemyType"] . "'>
-          <label>Health:</label>
-          <input type='number' name='enemyHealth' style='width: 30px' value='" . $row["enemyHealth"]. "'>
-          <label>Damage:</label>
-          <input type='number' name='enemyDamage' style='width: 30px' value='" . $row["enemyDamage"]. "'>
-          <button type='hidden' name='action' value='update'>update</button>
-          <button type='submit' name='action' value='remove'>delete</button>
-          </form>";
-
-          echo "------------------------------------------------------------------------------------------------------";
-        }
-      } else {
-        echo "0 results";
-      }
-
-      mysqli_close($conn);
-      ?>
-      <form method="POST" name="" action="php/insert.php">
-        <input type='hidden' name='dbtable' value="enemy">
-        <label>Tier:</label>
-        <input type="number" name="enemyTier" style='width: 10px;'>
-        <label for="type">Enemy type:</label>
-        <input type="text" name="enemyType" style='width: 95px'>
-        <label>Health:</label>
-        <input type="number" name="enemyHealth" style='width: 30px;'>
-        <label>Damage:</label>
-        <input type="number" name="enemyDamage" style='width: 30px'>
-
-        <button type="submit" name="insert">Save</button>
-      </form>
-    </div>
   </div>
+</div>
+<script>
+  //Modal
+var modal = document.getElementById("myModal");
+var openModal = document.getElementById("modalButton");
+var closeModal = document.getElementsByClassName("close")[0];
+
+openModal.onclick = function(){
+  modal.style.display = "block";
+  calculate()
+}
+
+closeModal.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+<div id="packaging">
+  <h1>Velkommen til GAME sin hjemmeside</h1>
+  <div id="faqDiv">
+    <h2 id="h1">Ofte stilte spørsmål (FAQ)</h2>
+    <?php
+      include 'php/connect.php';
+      $sql = "SELECT * FROM `faqs`";
+      $result = mysqli_query($conn, $sql);
+
+      if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+          if ($row["seen"] == "y"){
+            echo "
+            <button type='button' class='faqCollapsible'>" . $row["qTitle"]. "</button>
+            <div class='faqContent'>
+              <h3>" . $row["qName"]. "</h3>
+              <p>" . $row["question"]. "</p>
+
+              <h4>" . $row["aName"]. "</h4>
+              <p>" . $row["answer"]. "</p>
+            </div>
+            ";
+          }
+        }
+      } else {
+        echo "0 results";
+      }
+
+      mysqli_close($conn);
+    ?>
+  </div>
+  <div>
+    <h3 id="h1">Still ditt eget spørsmål:</h3>
+    <form id="faqAsk" method="POST" name="" action="php/insert.php">
+      <input type="hidden" name="dbtable" value="faq">
+      <label>Name:</label>
+      <input type='text' name='qName' style='width: 50%' placeholder="this wil be public information do not share sensetive information">
+      <label>Question title:</label>
+      <input type='text' name='qTitle' style='width: 50%' placeholder="a tilte to youre question">
+      <label for='type'>Question:</label>
+      <textarea name='question' cols='10' rows='5' style='width: 50%'></textarea>
+      <button type="submit" name="insert" style='width: 100px'>Submit</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  var faqColl = document.getElementsByClassName("faqCollapsible");
+  var i;
+
+  for (i = 0; i < faqColl.length; i++) {
+    faqColl[i].addEventListener("click", function() {
+      this.classList.toggle("faqActive");
+      var faqContent = this.nextElementSibling;
+      if (faqContent.style.display === "block") {
+        faqContent.style.display = "none";
+      } else {
+        faqContent.style.display = "block";
+      }
+    });
+  }
+
+  var insert = document.getElementsByName()
+</script>
+
+
+
 </body>
 </html>

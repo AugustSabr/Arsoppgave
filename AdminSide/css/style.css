@@ -1,13 +1,68 @@
-h1{
+#ibody {
+  background-color: black;
+  color: white;
+}
+
+#packaging{
+  width: 70%;
+  margin: auto;
+}
+
+#h1{
   margin-bottom: 0px;
 } 
 
-div{
+
+/* home page */
+#modalTable #sumTr td{
+  padding-bottom: 20px;
+}
+
+/* The Close Button */
+.close, .loginORout{
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  cursor: pointer;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+}
+
+/* Modal Content */
+.modal-content {
+  color: black;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+}
+
+
+/* game items page */
+#gameItems{
   display: flex;
   flex-direction: row;
 }
 
-div div{
+#gameItems div{
   flex-direction: column;
   margin: auto;
   margin-top: 0px;
@@ -17,4 +72,40 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+textarea {
+  vertical-align: bottom
+}
+
+.faqCollapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.faqActive, .faqCollapsible:hover {
+  background-color: #555;
+}
+
+.faqContent {
+  color: black;
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+#faqAsk{
+  display: flex;
+  flex-direction: column;
+}
+#faqAsk label, #faqAsk button{
+  margin-top: 15px;
 }

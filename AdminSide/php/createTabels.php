@@ -1,5 +1,9 @@
 <?php
+  session_start();
   include 'connect.php';
+  if($_SESSION["privileges"] != "all" && $_SESSION["privileges"] != "game"){
+    header("Location: index.php");
+  }
   $items = array("weapon", "armor", "blessing", "enemy");
   
   for ($x = 0; $x < count($items); $x++) {
