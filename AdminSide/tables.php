@@ -27,23 +27,23 @@
     <div>
       <?php
       include 'php/connect.php';
-      $sql = "SELECT * FROM `Weapons`";
-      $result = mysqli_query($conn, $sql);
+      $sql = 'SELECT * FROM "gameTables".weapons ORDER BY "weaponTier" ASC, "weaponEffect" ASC;';
+      $result = pg_query($conn, $sql);
 
-      if (mysqli_num_rows($result) > 0) {
+      if (0 < pg_num_rows($result)) {
         echo "<h2>Weapons</h2>";
-        while($row = mysqli_fetch_assoc($result)) {
+        while($row = pg_fetch_row($result)) {
           echo "
           <form method='POST' name='' action='php/update.php'>
           <input type='hidden' name='dbtable' value='weapon'>
-          <label for='type'>Id: " . $row["id"]. "</label>
-          <input type='hidden' name='id' value=" . $row["id"]. ">
+          <label for='type'>Id: " . $row[0]. "</label>
+          <input type='hidden' name='id' value=" . $row[0]. ">
           <label for='type'>Tier:</label>
-          <input type='text' name='weaponTier' style='width: 10px' value='" . $row["weaponTier"] . "'>
+          <input type='text' name='weaponTier' style='width: 10px' value='" . $row[1] . "'>
           <label for='type'>Type:</label>
-          <input type='text' name='weaponType' style='width: 95px' value='" . $row["weaponType"] . "'>
+          <input type='text' name='weaponType' style='width: 95px' value='" . $row[2] . "'>
           <label>Damage:</label>
-          <input type='number' name='weaponEffect' style='width: 30px' value='" . $row["weaponEffect"]. "'>
+          <input type='number' name='weaponEffect' style='width: 30px' value='" . $row[3]. "'>
           <button type='hidden' name='action' value='update'>update</button>
           <button type='submit' name='action' value='remove'>delete</button>
           </form>";
@@ -53,7 +53,7 @@
         echo "0 results";
       }
       
-      mysqli_close($conn);
+      pg_close($conn);
       ?>
       <form method="POST" name="" action="php/insert.php">
         <input type="hidden" name="dbtable" value="weapon">
@@ -71,23 +71,23 @@
     <div>
       <?php
       include 'php/connect.php';
-      $sql = "SELECT * FROM `Armors`";
-      $result = mysqli_query($conn, $sql);
+      $sql = 'SELECT * FROM "gameTables".armors ORDER BY "armorTier" ASC, "armorEffect" ASC;';
+      $result = pg_query($conn, $sql);
 
-      if (mysqli_num_rows($result) > 0) {
+      if (0 < pg_num_rows($result)) {
         echo "<h2>Armors</h2>";
-        while($row = mysqli_fetch_assoc($result)) {
+        while($row = pg_fetch_row($result)) {
           echo "
           <form method='POST' name='' action='php/update.php'>
           <input type='hidden' name='dbtable' value='armor'>
-          <label for='type'>Id: " . $row["id"]. "</label>
-          <input type='hidden' name='id' value=" . $row["id"]. ">
+          <label for='type'>Id: " . $row[0]. "</label>
+          <input type='hidden' name='id' value=" . $row[0]. ">
           <label for='type'>Tier:</label>
-          <input type='text' name='armorTier' style='width: 10px' value='" . $row["armorTier"] . "'>
+          <input type='text' name='armorTier' style='width: 10px' value='" . $row[1] . "'>
           <label for='type'>Type:</label>
-          <input type='text' name='armorType' style='width: 95px' value='" . $row["armorType"] . "'>
+          <input type='text' name='armorType' style='width: 95px' value='" . $row[2] . "'>
           <label>Defence:</label>
-          <input type='number' name='armorEffect' style='width: 30px' value='" . $row["armorEffect"]. "'>
+          <input type='number' name='armorEffect' style='width: 30px' value='" . $row[3]. "'>
           <button type='hidden' name='action' value='update'>update</button>
           <button type='submit' name='action' value='remove'>delete</button>
           </form>";
@@ -98,7 +98,7 @@
         echo "0 results";
       }
 
-      mysqli_close($conn);
+      pg_close($conn);
       ?>
       <form method="POST" action="php/insert.php">
         <input type='hidden' name='dbtable' value="armor">
@@ -114,21 +114,21 @@
 
       <?php
       include 'php/connect.php';
-      $sql = "SELECT * FROM `Blessings`";
-      $result = mysqli_query($conn, $sql);
+      $sql = 'SELECT * FROM "gameTables".blessings ORDER BY "id" ASC;';
+      $result = pg_query($conn, $sql);
 
-      if (mysqli_num_rows($result) > 0) {
+      if (0 < pg_num_rows($result)) {
         echo "<h2>Blessings</h2>";
-        while($row = mysqli_fetch_assoc($result)) {
+        while($row = pg_fetch_row($result)) {
           echo "
           <form method='POST' name='' action='php/update.php'>
           <input type='hidden' name='dbtable' value='blessing'>
-          <label for='type'>Id: " . $row["id"]. "</label>
-          <input type='hidden' name='id' value=" . $row["id"]. ">
+          <label for='type'>Id: " . $row[0]. "</label>
+          <input type='hidden' name='id' value=" . $row[0]. ">
           <label for='type'>Type:</label>
-          <input type='text' name='blessingType' style='width: 95px' value='" . $row["blessingType"] . "'>
+          <input type='text' name='blessingType' style='width: 95px' value='" . $row[1] . "'>
           <label>Effect:</label>
-          <input type='number' name='blessingEffect' style='width: 30px' value='" . $row["blessingEffect"]. "'>
+          <input type='number' name='blessingEffect' style='width: 30px' value='" . $row[2]. "'>
           <button type='hidden' name='action' value='update'>update</button>
           <button type='submit' name='action' value='remove'>delete</button>
           </form>";
@@ -139,7 +139,7 @@
         echo "0 results";
       }
 
-      mysqli_close($conn);
+      pg_close($conn);
       ?>
       <form method="POST" name="" action="php/insert.php">
         <input type='hidden' name='dbtable' value="blessing">
@@ -155,25 +155,25 @@
     <div>
       <?php
       include 'php/connect.php';
-      $sql = "SELECT * FROM `enemys`";
-      $result = mysqli_query($conn, $sql);
+      $sql = 'SELECT * FROM "gameTables".enemys ORDER BY "enemyTier" ASC, "enemyHealth" ASC, "enemyDamage" ASC;';
+      $result = pg_query($conn, $sql);
 
-      if (mysqli_num_rows($result) > 0) {
+      if (0 < pg_num_rows($result)) {
         echo "<h2>Enemies</h2>";
-        while($row = mysqli_fetch_assoc($result)) {
+        while($row = pg_fetch_row($result)) {
           echo "
           <form method='POST' name='' action='php/update.php'>
           <input type='hidden' name='dbtable' value='enemy'>
-          <label for='type'>Id: " . $row["id"]. "</label>
-          <input type='hidden' name='id' value=" . $row["id"]. ">
+          <label for='type'>Id: " . $row[0]. "</label>
+          <input type='hidden' name='id' value=" . $row[0]. ">
           <label for='type'>Tier:</label>
-          <input type='text' name='enemyTier' style='width: 10px' value='" . $row["enemyTier"] . "'>
+          <input type='text' name='enemyTier' style='width: 10px' value='" . $row[1] . "'>
           <label for='type'>Type:</label>
-          <input type='text' name='enemyType' style='width: 95px' value='" . $row["enemyType"] . "'>
+          <input type='text' name='enemyType' style='width: 95px' value='" . $row[2] . "'>
           <label>Health:</label>
-          <input type='number' name='enemyHealth' style='width: 30px' value='" . $row["enemyHealth"]. "'>
+          <input type='number' name='enemyHealth' style='width: 30px' value='" . $row[3]. "'>
           <label>Damage:</label>
-          <input type='number' name='enemyDamage' style='width: 30px' value='" . $row["enemyDamage"]. "'>
+          <input type='number' name='enemyDamage' style='width: 30px' value='" . $row[4]. "'>
           <button type='hidden' name='action' value='update'>update</button>
           <button type='submit' name='action' value='remove'>delete</button>
           </form>";
@@ -184,7 +184,7 @@
         echo "0 results";
       }
 
-      mysqli_close($conn);
+      pg_close($conn);
       ?>
       <form method="POST" name="" action="php/insert.php">
         <input type='hidden' name='dbtable' value="enemy">

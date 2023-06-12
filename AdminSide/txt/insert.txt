@@ -1,65 +1,109 @@
 
-$sql = "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (1, 'stick', 10);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (1, 'boxing gloves', 15);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (1, 'torch', 15);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (1, 'whip', 15);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (1, 'dagger', 20);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (1, 'shield', 20);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (1, 'bat', 25);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (1, 'picaxe', 25);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (2, 'bow', 30);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (2, 'spear', 30);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (2, 'club', 35);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (2, 'crossbow', 40);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (2, 'hammer', 40);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (2, 'axe', 45);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (2, 'sword', 45);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (2, 'ice staff', 50);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (3, 'sickle', 60);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (3, 'fire tome', 65);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (3, 'trident', 70);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (3, 'chainsaw', 85);";
-$sql .= "INSERT INTO Weapons (weaponTier, weaponType, weaponEffect) VALUES (3, 'exalibur', 100);";
+INSERT INTO "gameTables".armors ("armorTier", "armorType", "armorEffect") VALUES
+(1, 'worn cloths', 10),
+(1, 'wooden armor', 15),
+(1, 'cactus armor', 20),
+(2, 'mage robe', 35),
+(2, 'assassin cloak', 40),
+(2, 'gladiator armor', 55),
+(2, 'iron armor', 60),
+(3, 'gold armor', 70),
+(3, 'viking armor', 70),
+(3, 'armor of achilles', 85);
 
-$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (1, 'worn coths', 10);";
-$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (1, 'wooden armor', 15);";
-$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (1, 'cactus armor', 20);";
-$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (2, 'mage robe', 35);";
-$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (2, 'assassin cloak', 40);";
-$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (2, 'gladiator armor', 55);";
-$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (2, 'iron armor', 60);";
-$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (3, 'gold armor', 70);";
-$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (3, 'viking armor', 70);";
-$sql .= "INSERT INTO Armors (armorTier, armorType, armorEffect) VALUES (3, 'armor of achilles', 85);";
+INSERT INTO "gameTables".blessings("blessingType", "blessingEffect") VALUES
+('power', 10),
+('luck', 16),
+('destruction', 210),
+('health', 50),
+('protection', 15);
 
-$sql .= "INSERT INTO Blessings (blessingType, blessingEffect) VALUES ('power', 10);";
-$sql .= "INSERT INTO Blessings (blessingType, blessingEffect) VALUES ('luck', 16);";
-$sql .= "INSERT INTO Blessings (blessingType, blessingEffect) VALUES ('destruction', 210);";
-$sql .= "INSERT INTO Blessings (blessingType, blessingEffect) VALUES ('health', 50);";
-$sql .= "INSERT INTO Blessings (blessingType, blessingEffect) VALUES ('protection', 15);";
+INSERT INTO "gameTables".enemys ("enemyTier", "enemyType", "enemyHealth", "enemyDamage") VALUES
+(1, 'slime', 50, 10),
+(1, 'goblin scout', 60, 15),
+(1, 'wolf', 70, 15),
+(1, 'dark elf', 80, 20),
+(1, 'skeleton', 90, 20),
+(2, 'ghost', 110, 25),
+(2, 'giant scorpion', 120, 30),
+(2, 'dark knight', 140, 30),
+(2, 'wizard', 150, 30),
+(2, 'witch doctor', 150, 40),
+(2, 'pharaoh', 160, 40),
+(2, 'shadow creature', 175, 50),
+(3, 'orc', 220, 60),
+(3, 'ogre', 250, 70),
+(3, 'troll', 270, 80),
+(3, 'minotaur', 285, 90),
+(3, 'golem', 300, 100),
+(3, 'cyclops', 315, 100),
+(3, 'frost giant', 330, 100),
+(3, 'tighten', 450, 160);
 
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (1, 'slime', 50, 10);";
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (1, 'goblin scout', 60, 15);";
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (1, 'wolf', 70, 15);";
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (1, 'dark elf', 80, 20);";
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (1, 'skeleton', 90, 20);";
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (2, 'ghost', 110, 25);";
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (2, 'giant scorpion', 120, 30);";
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (2, 'dark knight', 140, 30);";
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (2, 'wisard', 150, 30);";
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (2, 'witch doctor', 150, 40);";
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (2, 'pharaoh', 160, 40);";
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (2, 'shadow creature', 175, 50);";
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (3, 'orc', 220, 60);";
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (3, 'oger', 250, 70);";
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (3, 'troll', 270, 80);";
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (3, 'minotaur', 285, 90);";
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (3, 'golem', 300, 100);";
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (3, 'cyclops', 315, 100);";
-$sql .= "INSERT INTO enemys (enemyTier, enemyType, enemyHealth, enemyDamage) VALUES (3, 'frost giant', 330, 100);";
+INSERT INTO "gameTables".weapons ("weaponTier", "weaponType", "weaponEffect") VALUES
+(1, 'stick', 10),
+(1, 'boxing gloves', 15),
+(1, 'torch', 15),
+(1, 'whip', 15),
+(1, 'dagger', 20),
+(1, 'shield', 20),
+(1, 'bat', 25),
+(1, 'picaxe', 25),
+(2, 'bow', 30),
+(2, 'spear', 30),
+(2, 'club', 35),
+(2, 'crossbow', 40),
+(2, 'hammer', 40),
+(2, 'axe', 45),
+(2, 'sword', 45),
+(2, 'ice staff', 50),
+(3, 'sickle', 60),
+(3, 'fire tome', 65),
+(3, 'trident', 70),
+(3, 'chainsaw', 85),
+(3, 'excalibur', 100);
 
-if (mysqli_multi_query($conn, $sql)) {
-  echo "<p>less go</p>";
-} else {
-  echo "Error: " . mysqli_error($conn);
-}
+
+INSERT INTO "webTables".faqs ("qName", "qTitle", "question", "aName", "answer", "show") VALUES
+('anonym', 'is it a good game?', 'is it a good game? wawawawawa', 'August (lead developer)', 'yes', 'y'),
+('truls', 'qwr', 'qwpjfoneagoun', 'August (lead developer)', 'felrnfef', 'y'),
+('no', 'title is dumb', 'bad game', 'august', 'wat?', 'y'),
+('a', 'a', 'a', '', NULL, 'n'),
+('b', 'b', 'b', '', NULL, 'n'),
+('a', 'a', 'a', '', NULL, 'n');
+
+INSERT INTO "webTables".users ("username", "password", "privileges", "usrLoginTime") VALUES
+('Admin', '$2y$10$cS4BpGesVsuoqnZkub6raeDDLjF42szxwbPnLZlNDjJcwu/vOaBc2', 'all', '2023-01-31 21:06:07'),
+('aa', '$2y$10$F.qDeG7m0alh1iX4eGZPc.v5LP/9HGsxUJYiFF75U5xsHkaoPCLVW', 'all', '2023-04-26 13:04:39'),
+('web', '$2y$10$ERHwbeDQorGsR2p2UItdGOS5tuXJK/mFJdP24WVWbgkhDS.z.TIKq', 'web', '2023-03-06 11:29:21'),
+('game', '$2y$10$6OB03FwifbSvwWx3jCrePe8A/fByyTKmjggWRw2P/jk66nuF58/eu', 'game', '2023-01-31 21:06:07'),
+('JWoodh', '$2y$10$nhNBk4F9o5ZSysWgQ7pQTuURO9wQHC9ynUCNRJoTAMKIIfTDhGc52', 'all', '2023-01-31 21:06:07');
+
+-------------------------------------------------------------------
+
+  INSERT INTO "gameTables"."armors" ("armorTier", "armorType", "armorEffect") VALUES (1, 'worn cloths', 10);
+
+
+  CREATE TABLE "gameTables".armors (
+    id integer DEFAULT nextval('"gameTables".armors_id_seq'::regclass) NOT NULL,
+    "armorTier" integer,
+    "armorType" character varying(255),
+    "armorEffect" integer
+);
+
+
+UPDATE "gameTables".armors SET "armorType" = 'worn cloths' WHERE id='1';
+
+DELETE FROM "gameTables".blessings WHERE id='8';
+
+/var/www/Arsoppgave/JavaGame_Adminsite/
+
+sudo chown -R apache2:apache2 /var/www/Arsoppgave/JavaGame_Adminsite/
+
+sudo chcon -R -t httpd_sys_content_t /var/www/Arsoppgave/JavaGame_Adminsite/
+
+sudo chcon -R -t httpd_sys_rw_content_t /var/www/Arsoppgave/JavaGame_Adminsite/
+
+sudo systemctl restart httpd
+
+setenforce 0 // turn of SELinux

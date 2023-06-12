@@ -27,29 +27,29 @@
     <h3>godkjente spørsmål</h3>
     <?php
       include 'php/connect.php';
-      $sql = "SELECT * FROM `faqs`";
-      $result = mysqli_query($conn, $sql);
+      $sql = 'SELECT * FROM "webTables".faqs  ORDER BY "id" ASC;';
+      $result = pg_query($conn, $sql);
 
-      if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-          if($row["seen"] == "y"){
+      if (0 < pg_num_rows($result)) {
+        while($row = pg_fetch_row($result)) {
+          if($row[6] == "y"){
             echo "
             <form method='POST' name='' action='php/update.php'>
             <input type='hidden' name='dbtable' value='faq'>
-            <label for='type'>Id: " . $row["id"]. "</label>
-            <input type='hidden' name='id' value=" . $row["id"]. ">
+            <label for='type'>Id: " . $row[0]. "</label>
+            <input type='hidden' name='id' value=" . $row[0]. ">
             <label for='type'>Question Name:</label>
-            <input type='text' name='qName' style='width: 100px' value='" . $row["qName"] . "'>
+            <input type='text' name='qName' style='width: 100px' value='" . $row[1] . "'>
             <label for='type'>Question Title:</label>
-            <input type='text' name='qTitle' style='width: 100px' value='" . $row["qTitle"] . "'>
+            <input type='text' name='qTitle' style='width: 100px' value='" . $row[2] . "'>
             <label for='type'>Question:</label>
-            <textarea name='question' cols='30' rows='1'>" . $row["question"] . "</textarea>
+            <textarea name='question' cols='30' rows='1'>" . $row[3] . "</textarea>
             <label>answer Name</label>
-            <input type='text' name='aName' style='width: 100px' value='" . $row["aName"]. "'>
+            <input type='text' name='aName' style='width: 100px' value='" . $row[4]. "'>
             <label>answer</label>
-            <textarea name='answer' cols='30' rows='1'>" . $row["answer"] . "</textarea>
+            <textarea name='answer' cols='30' rows='1'>" . $row[5] . "</textarea>
             <label>besvart: y/n</label>
-            <input type='text' name='seen' style='width: 20px' value='" . $row["seen"]. "'>
+            <input type='text' name='show' style='width: 20px' value='" . $row[6]. "'>
             <button type='hidden' name='action' value='update'>update</button>
             <button type='submit' name='action' value='remove'>delete</button>
             </form>";
@@ -62,34 +62,35 @@
   <div id="privateFAQ">
     <h3>usvarte spørsmål</h3>
     <?php
-      $result = mysqli_query($conn, $sql);
-      if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-          if($row["seen"] != "y"){
+      $result = pg_query($conn, $sql);
+      if (0 < pg_num_rows($result)) {
+        while($row = pg_fetch_row($result)) {
+          if($row[6] != "y"){
             echo "
             <form method='POST' name='' action='php/update.php'>
             <input type='hidden' name='dbtable' value='faq'>
-            <label for='type'>Id: " . $row["id"]. "</label>
-            <input type='hidden' name='id' value=" . $row["id"]. ">
+            <label for='type'>Id: " . $row[0]. "</label>
+            <input type='hidden' name='id' value=" . $row[0]. ">
             <label for='type'>Question Name:</label>
-            <input type='text' name='qName' style='width: 100px' value='" . $row["qName"] . "'>
+            <input type='text' name='qName' style='width: 100px' value='" . $row[1] . "'>
             <label for='type'>Question Title:</label>
-            <input type='text' name='qTitle' style='width: 100px' value='" . $row["qTitle"] . "'>
+            <input type='text' name='qTitle' style='width: 100px' value='" . $row[2] . "'>
             <label for='type'>Question:</label>
-            <textarea name='question' cols='30' rows='1'>" . $row["question"] . "</textarea>
+            <textarea name='question' cols='30' rows='1'>" . $row[3] . "</textarea>
             <label>answer Name</label>
-            <input type='text' name='aName' style='width: 100px' value='" . $row["aName"]. "'>
+            <input type='text' name='aName' style='width: 100px' value='" . $row[4]. "'>
             <label>answer</label>
-            <textarea name='answer' cols='30' rows='1'>" . $row["answer"] . "</textarea>
+            <textarea name='answer' cols='30' rows='1'>" . $row[5] . "</textarea>
             <label>besvart: y/n</label>
-            <input type='text' name='seen' style='width: 20px' value='" . $row["seen"]. "'>
+            <input type='text' name='show' style='width: 20px' value='" . $row[6]. "'>
             <button type='hidden' name='action' value='update'>update</button>
             <button type='submit' name='action' value='remove'>delete</button>
             </form>";
             echo "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
           }
         }
-      }  
+      }
+      pg_close($conn);
     ?>
   </div>
 </body>

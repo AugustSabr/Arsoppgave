@@ -38,5 +38,12 @@
       window.location = "manageProfiles.php";
     }
 </script>
+<br>
+<p>Les uviklermanualen her eller last ned pdf-en <a href="pdf/UtviklerManual.pdf" download>
+  her
+</a><p>
+
+<iframe src="pdf/UtviklerManual.pdf#toolbar=0" style="width: 60%; height: 80vh;"></iframe>
+
 </body>
 </html>

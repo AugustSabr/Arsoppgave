@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if (isset($_SESSION['privileges'])) {
+      unset($_SESSION['privileges']);
+    }
+    include './error_log_start.php';
+  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,17 +14,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="css/style.css" rel="stylesheet" type="text/css" />
   <title>Homepage</title>
-  <?php
-    session_start();
-    if (isset($_SESSION['privileges'])) {
-      unset($_SESSION['privileges']);
-    }
-    include 'php/connect.php';
-  ?>
 </head>
 <body id="ibody">
 
-<span id="modalButton" class="loginORout">Login as admin</span>
+<span id="modalButton" class="loginORout">Logg inn</span>
 
 <!-- The Modal -->
 <div id="myModal" class="modal" style="margin: 0px;">
@@ -34,21 +35,22 @@
       </form>
 
       <?php
+        include './php/connect.php';
         if(isset($_POST['submit'])){
           //Gjøre om POST-data til variabler
-          $usrn = mysqli_real_escape_string($conn, $_POST['username']);            
-          $pwd = mysqli_real_escape_string($conn, $_POST['passord']);
+          $usrn = pg_escape_string($conn, $_POST['username']);            
+          $pwd = pg_escape_string($conn, $_POST['passord']);
         
-          $sql = "SELECT * FROM users where username='$usrn'";
+          $sql = 'SELECT * FROM "webTables"."users" where username='."'$usrn'";
         
-          $result = mysqli_query($conn, $sql)
+          $result = pg_query($conn, $sql)
             or die('Error connecting to database.');
         
-          if (mysqli_num_rows($result) > 0) {
-            while($row = mysqli_fetch_assoc($result)) {
-              if (password_verify($pwd, $row["password"])) {
-                mysqli_query($conn, "UPDATE users SET usrLoginTime = CURRENT_TIMESTAMP() WHERE username='$usrn'");
-                $_SESSION["privileges"] = $row["privileges"];
+          if (0 < pg_num_rows($result)) {
+            while($row = pg_fetch_row($result)) {
+              if (password_verify($pwd, $row[2])) {
+                pg_query($conn, 'UPDATE "webTables".users SET "usrLoginTime" = '."'now()'".' WHERE "id"='."'$row[0]';");
+                $_SESSION["privileges"] = $row[3];
                 header("Location: admin.php");
               } else {
                 echo '<p>feil brukernavn eller passord</p>';
@@ -58,7 +60,9 @@
             echo '<p>feil brukernavn eller passord</p>';
           }
         }
+        pg_close($conn);
       ?>
+
   </div>
 </div>
 <script>
@@ -89,20 +93,20 @@ window.onclick = function(event) {
     <h2 id="h1">Ofte stilte spørsmål (FAQ)</h2>
     <?php
       include 'php/connect.php';
-      $sql = "SELECT * FROM `faqs`";
-      $result = mysqli_query($conn, $sql);
+      $sql = 'SELECT * FROM "webTables".faqs;';
+      $result = pg_query($conn, $sql);
 
-      if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-          if ($row["seen"] == "y"){
+      if (0 < pg_num_rows($result)) {
+        while($row = pg_fetch_row($result)) {
+          if ($row[6] == "y"){
             echo "
-            <button type='button' class='faqCollapsible'>" . $row["qTitle"]. "</button>
+            <button type='button' class='faqCollapsible'>" . $row[2]. "</button>
             <div class='faqContent'>
-              <h3>" . $row["qName"]. "</h3>
-              <p>" . $row["question"]. "</p>
+              <h3>" . $row[1]. "</h3>
+              <p>" . $row[3]. "</p>
 
-              <h4>" . $row["aName"]. "</h4>
-              <p>" . $row["answer"]. "</p>
+              <h4>" . $row[4]. "</h4>
+              <p>" . $row[6]. "</p>
             </div>
             ";
           }
@@ -110,22 +114,21 @@ window.onclick = function(event) {
       } else {
         echo "0 results";
       }
-
-      mysqli_close($conn);
+      pg_close($conn);
     ?>
-  </div>
-  <div>
-    <h3 id="h1">Still ditt eget spørsmål:</h3>
-    <form id="faqAsk" method="POST" name="" action="php/insert.php">
-      <input type="hidden" name="dbtable" value="faq">
-      <label>Name:</label>
-      <input type='text' name='qName' style='width: 50%' placeholder="this wil be public information do not share sensetive information">
-      <label>Question title:</label>
-      <input type='text' name='qTitle' style='width: 50%' placeholder="a tilte to youre question">
-      <label for='type'>Question:</label>
-      <textarea name='question' cols='10' rows='5' style='width: 50%'></textarea>
-      <button type="submit" name="insert" style='width: 100px'>Submit</button>
-    </form>
+    <div>
+      <h3 id="h1">Still ditt eget spørsmål:</h3>
+      <form id="faqAsk" method="POST" name="" action="php/insert.php">
+        <input type="hidden" name="dbtable" value="faq">
+        <label>Navn:</label>
+        <input type='text' name='qName' style='width: 50%' placeholder="denne informasjonen vil bli publisert så ikke del sensetiv informasjon">
+        <label>Spørsmål overskrift:</label>
+        <input type='text' name='qTitle' style='width: 50%' placeholder="en overskrift til spørsmålet">
+        <label for='type'>Spørsmål:</label>
+        <textarea name='question' cols='10' rows='5' style='width: 50%'></textarea>
+        <button type="submit" name="insert" style='width: 100px' onclick="submitAlert()">Submit</button>
+      </form>
+    </div>
   </div>
 </div>
 
@@ -145,7 +148,10 @@ window.onclick = function(event) {
     });
   }
 
-  var insert = document.getElementsByName()
+  function submitAlert(){
+    alert("Takk for spørsmål, etter noen har sett på det og svart vil det komme på nettsiden");
+  }
+  //response to form
 </script>
 
 
