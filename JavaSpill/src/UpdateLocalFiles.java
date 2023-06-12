@@ -13,7 +13,7 @@ public class UpdateLocalFiles {
   // info-en du trenger for å koble til database;
   private String ip = "10.0.0.70";
   private String port = "5432";
-  private String username = "postgres";
+  private String username = "Webuser";
   private String password = "123";
   private String database = "game4";
 
@@ -23,44 +23,40 @@ public class UpdateLocalFiles {
     try {
       Connection con = getConection();
       for (int i = 0; i < categories.length; i++){// repeterer dette for alle relevante tabellene
-        PreparedStatement statement = con.prepareStatement("SELECT * FROM \"gameTables\"."+ categories[i]);
+        PreparedStatement statement = con.prepareStatement("SELECT * FROM \"gameTables\"."+ categories[i]+"s ORDER BY \"id\" ASC;");
         ResultSet result = statement.executeQuery();
-        System.out.println(result);
+        
+        // sjekker hvilke kolloner som finnes i tabbelen for å vite hva den skal lagre
+        Boolean tierExists = con.prepareStatement("SELECT column_name FROM information_schema.columns WHERE table_name='" + categories[i] + "s' and column_name='" + categories[i] + "Tier';").executeQuery().next();
+        Boolean effectExists = con.prepareStatement("SELECT column_name FROM information_schema.columns WHERE table_name='" + categories[i] + "s' and column_name='" + categories[i] + "Effect';").executeQuery().next();
+        Boolean damageExists = con.prepareStatement("SELECT column_name FROM information_schema.columns WHERE table_name='" + categories[i] + "s' and column_name='" + categories[i] + "Damage';").executeQuery().next();
+        Boolean healthExists = con.prepareStatement("SELECT column_name FROM information_schema.columns WHERE table_name='" + categories[i] + "s' and column_name='" + categories[i] + "Health';").executeQuery().next();
 
-        // PreparedStatement statement = con.prepareStatement("SELECT * FROM `" + categories[i] + "s`");
-        // ResultSet result = statement.executeQuery();
+        ArrayList<String> array = new ArrayList<String>();
+        while(result.next()){//går gjennom alle rader i tabbelen
+          array.add(result.getString(categories[i] + "Type"));
 
-        // // sjekker hvilke kolloner som finnes i tabbelen for å vite hva den skal lagre
-        // Boolean tierExists = con.prepareStatement("SHOW COLUMNS FROM " + categories[i] + "s LIKE '" + categories[i] + "Tier'").executeQuery().next();
-        // Boolean effectExists = con.prepareStatement("SHOW COLUMNS FROM " + categories[i] + "s LIKE '" + categories[i] + "Effect'").executeQuery().next();
-        // Boolean damageExists = con.prepareStatement("SHOW COLUMNS FROM " + categories[i] + "s LIKE '" + categories[i] + "Damage'").executeQuery().next();
-        // Boolean healthExists = con.prepareStatement("SHOW COLUMNS FROM " + categories[i] + "s LIKE '" + categories[i] + "Health'").executeQuery().next();
+          // hvis det finnnes legger vi det til i tabbellen
+          if(tierExists != false){
+            array.add(result.getString(categories[i] + "Tier"));
+          }
+          if(effectExists != false){
+            array.add(result.getString(categories[i] + "Effect"));
+          }
+          if(damageExists != false){
+            array.add(result.getString(categories[i] + "Damage"));
+          }
+          if(healthExists != false){
+            array.add(result.getString(categories[i] + "Health"));
+          }
+        }
 
-        // ArrayList<String> array = new ArrayList<String>();
-        // while(result.next()){//går gjennom alle rader i tabbelen
-        //   array.add(result.getString(categories[i] + "Type"));
-
-        //   // hvis det finnnes legger vi det til i tabbellen
-        //   if(tierExists != false){
-        //     array.add(result.getString(categories[i] + "Tier"));
-        //   }
-        //   if(effectExists != false){
-        //     array.add(result.getString(categories[i] + "Effect"));
-        //   }
-        //   if(damageExists != false){
-        //     array.add(result.getString(categories[i] + "Damage"));
-        //   }
-        //   if(healthExists != false){
-        //     array.add(result.getString(categories[i] + "Health"));
-        //   }
-        // }
-
-        // //lager og skriver i en fil
-        // FileWriter myWriter = new FileWriter("localFiles/" + categories[i] +".txt");
-        // for(int g = 0; g < array.size(); g++){
-        //   myWriter.write(array.get(g) + System.lineSeparator());
-        // }
-        // myWriter.close();
+        //lager og skriver i en fil
+        FileWriter myWriter = new FileWriter("localFiles/" + categories[i] +".txt");
+        for(int g = 0; g < array.size(); g++){
+          myWriter.write(array.get(g) + System.lineSeparator());
+        }
+        myWriter.close();
       }
       System.err.println("\nSuccessfully updated locale files.");
     } catch (Exception e) {
@@ -82,5 +78,3 @@ public class UpdateLocalFiles {
     return conn;
   }
 }
-
-

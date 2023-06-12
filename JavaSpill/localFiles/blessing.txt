@@ -1,0 +1,10 @@
+power
+10
+luck
+16
+destruction
+210
+health
+50
+protection
+15
