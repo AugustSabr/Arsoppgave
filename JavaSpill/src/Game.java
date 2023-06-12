@@ -68,9 +68,6 @@ public class Game {
       System.err.println("Error message: " + e + "\n");
       // e.printStackTrace();
     }
-    // for (int i = 0; i < 100; i++) {
-    //   System.out.println((int)Math.floor(i/10));
-    // }
     ui.addGameInventory(in);
     ui.addPlayer(player);
     vm.showGamescreen();
