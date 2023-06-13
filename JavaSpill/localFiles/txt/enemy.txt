@@ -54,7 +54,7 @@ placeholder.png
 0
 1
 2
-wisard
+wizard
 placeholder.png
 30
 150
@@ -89,7 +89,7 @@ placeholder.png
 0
 1
 3
-oger
+ogre
 placeholder.png
 70
 250
@@ -128,6 +128,13 @@ frost giant
 placeholder.png
 100
 330
+0
+1
+3
+tighten
+placeholder.png
+160
+450
 0
 1
 3

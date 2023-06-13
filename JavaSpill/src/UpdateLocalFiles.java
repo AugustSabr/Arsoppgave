@@ -31,14 +31,18 @@ public class UpdateLocalFiles {
         Boolean effectExists = con.prepareStatement("SELECT column_name FROM information_schema.columns WHERE table_name='" + categories[i] + "s' and column_name='" + categories[i] + "Effect';").executeQuery().next();
         Boolean damageExists = con.prepareStatement("SELECT column_name FROM information_schema.columns WHERE table_name='" + categories[i] + "s' and column_name='" + categories[i] + "Damage';").executeQuery().next();
         Boolean healthExists = con.prepareStatement("SELECT column_name FROM information_schema.columns WHERE table_name='" + categories[i] + "s' and column_name='" + categories[i] + "Health';").executeQuery().next();
+        Boolean speedExists = con.prepareStatement("SELECT column_name FROM information_schema.columns WHERE table_name='" + categories[i] + "s' and column_name='speed';").executeQuery().next();
+        Boolean pathExists = con.prepareStatement("SELECT column_name FROM information_schema.columns WHERE table_name='" + categories[i] + "s' and column_name='path';").executeQuery().next();
+        Boolean valueExists = con.prepareStatement("SELECT column_name FROM information_schema.columns WHERE table_name='" + categories[i] + "s' and column_name='value';").executeQuery().next();
+        Boolean enduranceExists = con.prepareStatement("SELECT column_name FROM information_schema.columns WHERE table_name='" + categories[i] + "s' and column_name='endurance';").executeQuery().next();
 
         ArrayList<String> array = new ArrayList<String>();
         while(result.next()){//går gjennom alle rader i tabbelen
           array.add(result.getString(categories[i] + "Type"));
 
           // hvis det finnnes legger vi det til i tabbellen
-          if(tierExists != false){
-            array.add(result.getString(categories[i] + "Tier"));
+          if(pathExists != false){
+            array.add(result.getString("path"));
           }
           if(effectExists != false){
             array.add(result.getString(categories[i] + "Effect"));
@@ -49,10 +53,29 @@ public class UpdateLocalFiles {
           if(healthExists != false){
             array.add(result.getString(categories[i] + "Health"));
           }
+          if(enduranceExists != false){
+            array.add(result.getString("endurance"));
+          }
+          if(speedExists != false){
+            array.add(result.getString("speed"));
+          }
+          if(valueExists != false){
+            array.add(result.getString("value"));
+          }
+          if(tierExists != false){
+            array.add(result.getString(categories[i] + "Tier"));
+          }
+
+
+
+
+
+
+
         }
 
         //lager og skriver i en fil
-        FileWriter myWriter = new FileWriter("localFiles/" + categories[i] +".txt");
+        FileWriter myWriter = new FileWriter("localFiles/txt/" + categories[i] +".txt");
         for(int g = 0; g < array.size(); g++){
           myWriter.write(array.get(g) + System.lineSeparator());
         }

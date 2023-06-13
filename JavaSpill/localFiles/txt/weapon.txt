@@ -28,7 +28,7 @@ bat.png
 25
 25
 1
-pickaxe
+picaxe
 pickaxe.png
 25
 25
@@ -93,7 +93,7 @@ placeholder.png
 85
 85
 3
-exalibur
+excalibur
 placeholder.png
 100
 100

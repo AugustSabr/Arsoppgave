@@ -16,7 +16,6 @@ public class GameInventory {
 
   private String[] categories = {"weapon", "item","armor", "blessing", "enemy"};
 
-  
   public GameInventory(){
     for (int i = 0; i < categories.length; i++){
       try {
