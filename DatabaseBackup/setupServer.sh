@@ -1,10 +1,13 @@
+#!/bin/bash
+
+# scp -r /Users/August/"OneDrive - Osloskolen"/August_IMI/August_2IMI/Arsoppgave/DatabaseBackup l2@192.168.0.209:/home/l2/
 apt update
 
-$name=$1
+# name=l2
 
-sudo apt install ufw
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
+apt install ufw
+ufw default deny incoming
+ufw default allow outgoing
 
 # apt install openssh-server -y #om bruker ikke allerede har ssh
 ufw allow OpenSSH
@@ -12,7 +15,7 @@ ufw allow in "WWW Full"
 
 apt install apache2 -y
 mkdir -p /var/www/Arsoppgave
-chown -R $name /var/www/Arsoppgave
+chown -R l2 /var/www/Arsoppgave
 chmod -R 755 /var/www/Arsoppgave
 cat >> /etc/apache2/sites-available/Arsoppgave.conf << EOF
 <VirtualHost *:80>
@@ -38,23 +41,33 @@ sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - 
 apt update
 apt-get -y install postgresql-15 -y
+ufw allow 5432
 
 apt install -y phppgadmin apache2 -y
 sed -i 's/\(^.*conf\[.extra_login_security.\] =\) true/\1 false/' /etc/phppgadmin/config.inc.php
 # sed -i 's/\(^.*conf\[.owned_only.\] =\) false/\1 true/' /etc/phppgadmin/config.inc.php
 sed -i 's/Require local/Require all granted/' /etc/apache2/conf-enabled/phppgadmin.conf
 
-sudo -u postgres psql
+-u postgres psql
 ALTER USER postgres WITH PASSWORD '123';
-exit
 
-ALTER USER "Webuser" WITH PASSWORD '123';
+CREATE DATABASE game4;
+CREATE USER "Gameuser" WITH ENCRYPTED PASSWORD '123';
+ALTER ROLE "Gameuser" WITH LOGIN;
+CREATE USER "Webuser" WITH ENCRYPTED PASSWORD '123';
+ALTER ROLE "Webuser" WITH LOGIN;
+
+CREATE DATABASE game4;
+\i /home/l2/DatabaseBackup/dump.sql
+
+GRANT SELECT ON ALL TABLES IN SCHEMA "gameTables" TO Gameuser;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA "gameTables" TO Webuser;
+exit
 
 systemctl restart apache2
 /etc/init.d/postgresql restart
-sudo ufw enable
-systemctl restart networking
-
+ufw enable
+systemctl restart networking.service
 
 # echo 'Dette skriptet laster ned det du trenger for å drifte Årsoppgaven, men du må fortsatt endre et par filer selv:
 # Filbane: /etc/network/interfaces (om du vil ha statisk ip):

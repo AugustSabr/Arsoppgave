@@ -11,7 +11,7 @@ import java.io.FileWriter;
 public class UpdateLocalFiles {
 
   // info-en du trenger for å koble til database;
-  private String ip = "10.0.0.70";
+  private String ip = "84.215.89.206";
   private String port = "5432";
   private String username = "Webuser";
   private String password = "123";

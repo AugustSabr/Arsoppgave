@@ -67,7 +67,9 @@ CREATE TABLE "gameTables".armors (
     id integer DEFAULT nextval('"gameTables".armors_id_seq'::regclass) NOT NULL,
     "armorTier" integer,
     "armorType" character varying(255),
-    "armorEffect" integer
+    "armorEffect" integer,
+    path character varying(255) DEFAULT 'placeholder.png'::character varying,
+    value character varying(255)
 );
 
 
@@ -123,7 +125,10 @@ CREATE TABLE "gameTables".enemys (
     "enemyTier" integer,
     "enemyType" character varying(255),
     "enemyHealth" integer,
-    "enemyDamage" integer
+    "enemyDamage" integer,
+    path character varying(255) DEFAULT 'placeholder.png'::character varying,
+    speed integer DEFAULT 1,
+    endurance integer DEFAULT 0
 );
 
 
@@ -165,7 +170,9 @@ CREATE TABLE "gameTables".weapons (
     id integer DEFAULT nextval('"gameTables".weapons_id_seq'::regclass),
     "weaponTier" integer,
     "weaponType" character varying(255),
-    "weaponEffect" integer
+    "weaponEffect" integer,
+    path character varying(255) DEFAULT 'placeholder.png'::character varying,
+    value integer
 );
 
 
@@ -235,16 +242,16 @@ ALTER TABLE "webTables".users OWNER TO postgres;
 -- Data for Name: armors; Type: TABLE DATA; Schema: gameTables; Owner: postgres
 --
 
-INSERT INTO "gameTables".armors VALUES (2, 1, 'wooden armor', 15);
-INSERT INTO "gameTables".armors VALUES (3, 1, 'cactus armor', 20);
-INSERT INTO "gameTables".armors VALUES (4, 2, 'mage robe', 35);
-INSERT INTO "gameTables".armors VALUES (5, 2, 'assassin cloak', 40);
-INSERT INTO "gameTables".armors VALUES (6, 2, 'gladiator armor', 55);
-INSERT INTO "gameTables".armors VALUES (7, 2, 'iron armor', 60);
-INSERT INTO "gameTables".armors VALUES (8, 3, 'gold armor', 70);
-INSERT INTO "gameTables".armors VALUES (9, 3, 'viking armor', 70);
-INSERT INTO "gameTables".armors VALUES (10, 3, 'armor of achilles', 85);
-INSERT INTO "gameTables".armors VALUES (1, 1, 'worn cloths', 10);
+INSERT INTO "gameTables".armors VALUES (10, 3, 'armor of achilles', 85, 'placeholder.png', '85');
+INSERT INTO "gameTables".armors VALUES (1, 1, 'worn cloths', 10, 'wornCloths.png', '10');
+INSERT INTO "gameTables".armors VALUES (2, 1, 'wooden helmet', 15, 'woodenHelmet.png', '15');
+INSERT INTO "gameTables".armors VALUES (3, 1, 'cactus armor', 20, 'placeholder.png', '20');
+INSERT INTO "gameTables".armors VALUES (4, 2, 'mage robe', 35, 'placeholder.png', '35');
+INSERT INTO "gameTables".armors VALUES (5, 2, 'assassin cloak', 40, 'placeholder.png', '40');
+INSERT INTO "gameTables".armors VALUES (6, 2, 'gladiator armor', 55, 'placeholder.png', '55');
+INSERT INTO "gameTables".armors VALUES (7, 2, 'iron armor', 60, 'placeholder.png', '60');
+INSERT INTO "gameTables".armors VALUES (8, 3, 'gold armor', 70, 'placeholder.png', '70');
+INSERT INTO "gameTables".armors VALUES (9, 3, 'viking armor', 70, 'placeholder.png', '70');
 
 
 --
@@ -262,26 +269,26 @@ INSERT INTO "gameTables".blessings VALUES (1, 'power', 10);
 -- Data for Name: enemys; Type: TABLE DATA; Schema: gameTables; Owner: postgres
 --
 
-INSERT INTO "gameTables".enemys VALUES (2, 1, 'goblin scout', 60, 15);
-INSERT INTO "gameTables".enemys VALUES (3, 1, 'wolf', 70, 15);
-INSERT INTO "gameTables".enemys VALUES (4, 1, 'dark elf', 80, 20);
-INSERT INTO "gameTables".enemys VALUES (5, 1, 'skeleton', 90, 20);
-INSERT INTO "gameTables".enemys VALUES (6, 2, 'ghost', 110, 25);
-INSERT INTO "gameTables".enemys VALUES (7, 2, 'giant scorpion', 120, 30);
-INSERT INTO "gameTables".enemys VALUES (8, 2, 'dark knight', 140, 30);
-INSERT INTO "gameTables".enemys VALUES (9, 2, 'wizard', 150, 30);
-INSERT INTO "gameTables".enemys VALUES (10, 2, 'witch doctor', 150, 40);
-INSERT INTO "gameTables".enemys VALUES (11, 2, 'pharaoh', 160, 40);
-INSERT INTO "gameTables".enemys VALUES (12, 2, 'shadow creature', 175, 50);
-INSERT INTO "gameTables".enemys VALUES (13, 3, 'orc', 220, 60);
-INSERT INTO "gameTables".enemys VALUES (14, 3, 'ogre', 250, 70);
-INSERT INTO "gameTables".enemys VALUES (15, 3, 'troll', 270, 80);
-INSERT INTO "gameTables".enemys VALUES (16, 3, 'minotaur', 285, 90);
-INSERT INTO "gameTables".enemys VALUES (17, 3, 'golem', 300, 100);
-INSERT INTO "gameTables".enemys VALUES (18, 3, 'cyclops', 315, 100);
-INSERT INTO "gameTables".enemys VALUES (19, 3, 'frost giant', 330, 100);
-INSERT INTO "gameTables".enemys VALUES (20, 3, 'tighten', 450, 160);
-INSERT INTO "gameTables".enemys VALUES (1, 1, 'slime', 50, 10);
+INSERT INTO "gameTables".enemys VALUES (2, 1, 'goblin scout', 60, 15, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (3, 1, 'wolf', 70, 15, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (4, 1, 'dark elf', 80, 20, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (5, 1, 'skeleton', 90, 20, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (6, 2, 'ghost', 110, 25, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (7, 2, 'giant scorpion', 120, 30, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (8, 2, 'dark knight', 140, 30, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (9, 2, 'wizard', 150, 30, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (10, 2, 'witch doctor', 150, 40, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (11, 2, 'pharaoh', 160, 40, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (12, 2, 'shadow creature', 175, 50, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (13, 3, 'orc', 220, 60, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (14, 3, 'ogre', 250, 70, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (15, 3, 'troll', 270, 80, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (16, 3, 'minotaur', 285, 90, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (17, 3, 'golem', 300, 100, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (18, 3, 'cyclops', 315, 100, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (19, 3, 'frost giant', 330, 100, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (20, 3, 'tighten', 450, 160, 'placeholder.png', 1, 0);
+INSERT INTO "gameTables".enemys VALUES (1, 1, 'slime', 50, 10, 'slime.gif', 1, 0);
 
 
 --
@@ -298,27 +305,26 @@ INSERT INTO "gameTables".img VALUES ('weapons', 2, '\x89504e470d0a1a0a0000000d49
 -- Data for Name: weapons; Type: TABLE DATA; Schema: gameTables; Owner: postgres
 --
 
-INSERT INTO "gameTables".weapons VALUES (2, 1, 'boxing gloves', 15);
-INSERT INTO "gameTables".weapons VALUES (3, 1, 'torch', 15);
-INSERT INTO "gameTables".weapons VALUES (4, 1, 'whip', 15);
-INSERT INTO "gameTables".weapons VALUES (5, 1, 'dagger', 20);
-INSERT INTO "gameTables".weapons VALUES (6, 1, 'shield', 20);
-INSERT INTO "gameTables".weapons VALUES (7, 1, 'bat', 25);
-INSERT INTO "gameTables".weapons VALUES (8, 1, 'picaxe', 25);
-INSERT INTO "gameTables".weapons VALUES (9, 2, 'bow', 30);
-INSERT INTO "gameTables".weapons VALUES (10, 2, 'spear', 30);
-INSERT INTO "gameTables".weapons VALUES (11, 2, 'club', 35);
-INSERT INTO "gameTables".weapons VALUES (12, 2, 'crossbow', 40);
-INSERT INTO "gameTables".weapons VALUES (13, 2, 'hammer', 40);
-INSERT INTO "gameTables".weapons VALUES (14, 2, 'axe', 45);
-INSERT INTO "gameTables".weapons VALUES (15, 2, 'sword', 45);
-INSERT INTO "gameTables".weapons VALUES (16, 2, 'ice staff', 50);
-INSERT INTO "gameTables".weapons VALUES (17, 3, 'sickle', 60);
-INSERT INTO "gameTables".weapons VALUES (18, 3, 'fire tome', 65);
-INSERT INTO "gameTables".weapons VALUES (19, 3, 'trident', 70);
-INSERT INTO "gameTables".weapons VALUES (20, 3, 'chainsaw', 85);
-INSERT INTO "gameTables".weapons VALUES (21, 3, 'excalibur', 100);
-INSERT INTO "gameTables".weapons VALUES (1, 1, 'stick', 10);
+INSERT INTO "gameTables".weapons VALUES (8, 1, 'picaxe', 25, 'pickaxe.png', 25);
+INSERT INTO "gameTables".weapons VALUES (9, 2, 'bow', 30, 'placeholder.png', 30);
+INSERT INTO "gameTables".weapons VALUES (10, 2, 'spear', 30, 'placeholder.png', 30);
+INSERT INTO "gameTables".weapons VALUES (11, 2, 'club', 35, 'placeholder.png', 35);
+INSERT INTO "gameTables".weapons VALUES (12, 2, 'crossbow', 40, 'placeholder.png', 40);
+INSERT INTO "gameTables".weapons VALUES (13, 2, 'hammer', 40, 'placeholder.png', 40);
+INSERT INTO "gameTables".weapons VALUES (14, 2, 'axe', 45, 'placeholder.png', 45);
+INSERT INTO "gameTables".weapons VALUES (15, 2, 'sword', 45, 'placeholder.png', 45);
+INSERT INTO "gameTables".weapons VALUES (16, 2, 'ice staff', 50, 'placeholder.png', 50);
+INSERT INTO "gameTables".weapons VALUES (1, 1, 'stick', 10, 'stick.png', 10);
+INSERT INTO "gameTables".weapons VALUES (2, 1, 'boxing gloves', 15, 'boxingGloves.png', 15);
+INSERT INTO "gameTables".weapons VALUES (17, 3, 'sickle', 60, 'placeholder.png', 60);
+INSERT INTO "gameTables".weapons VALUES (3, 1, 'torch', 15, 'torch.png', 15);
+INSERT INTO "gameTables".weapons VALUES (18, 3, 'fire tome', 65, 'placeholder.png', 65);
+INSERT INTO "gameTables".weapons VALUES (4, 1, 'whip', 15, 'placeholder.png', 15);
+INSERT INTO "gameTables".weapons VALUES (19, 3, 'trident', 70, 'placeholder.png', 70);
+INSERT INTO "gameTables".weapons VALUES (5, 1, 'dagger', 20, 'dagger.png', 20);
+INSERT INTO "gameTables".weapons VALUES (20, 3, 'chainsaw', 85, 'placeholder.png', 85);
+INSERT INTO "gameTables".weapons VALUES (7, 1, 'bat', 25, 'bat.png', 25);
+INSERT INTO "gameTables".weapons VALUES (21, 3, 'excalibur', 100, 'placeholder.png', 100);
 
 
 --
@@ -344,35 +350,35 @@ INSERT INTO "webTables".users VALUES (5, 'JWoodh', '$2y$10$nhNBk4F9o5ZSysWgQ7pQT
 INSERT INTO "webTables".users VALUES (3, 'web', '$2y$10$ERHwbeDQorGsR2p2UItdGOS5tuXJK/mFJdP24WVWbgkhDS.z.TIKq', 'web', '2023-04-30 01:32:37.990742+02');
 INSERT INTO "webTables".users VALUES (4, 'game', '$2y$10$6OB03FwifbSvwWx3jCrePe8A/fByyTKmjggWRw2P/jk66nuF58/eu', 'game', '2023-04-30 01:32:59.337298+02');
 INSERT INTO "webTables".users VALUES (7, 'ArvidJ', '$2y$10$QdR9VxnSqv0NTSpzv/KEreCZurKhNMdtyBnr.MtVnM0.gvJ748GWy', 'all', '2023-05-05 09:07:28.11162+02');
-INSERT INTO "webTables".users VALUES (2, 'a', '$2y$10$aLC5CcaiAdlCULvn.KDVw..8T/OmGw5d32qn83q1OoKgjI5MDB7L2', 'all', '2023-05-23 10:43:07.883321+02');
+INSERT INTO "webTables".users VALUES (2, 'a', '$2y$10$aLC5CcaiAdlCULvn.KDVw..8T/OmGw5d32qn83q1OoKgjI5MDB7L2', 'all', '2023-06-13 13:23:30.166517+02');
 
 
 --
 -- Name: armors_id_seq; Type: SEQUENCE SET; Schema: gameTables; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"gameTables".armors_id_seq', 11, true);
+SELECT pg_catalog.setval('"gameTables".armors_id_seq', 14, true);
 
 
 --
 -- Name: blessings_id_seq; Type: SEQUENCE SET; Schema: gameTables; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"gameTables".blessings_id_seq', 9, true);
+SELECT pg_catalog.setval('"gameTables".blessings_id_seq', 10, true);
 
 
 --
 -- Name: enemys_id_seq; Type: SEQUENCE SET; Schema: gameTables; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"gameTables".enemys_id_seq', 21, true);
+SELECT pg_catalog.setval('"gameTables".enemys_id_seq', 23, true);
 
 
 --
 -- Name: weapons_id_seq; Type: SEQUENCE SET; Schema: gameTables; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"gameTables".weapons_id_seq', 25, true);
+SELECT pg_catalog.setval('"gameTables".weapons_id_seq', 33, true);
 
 
 --
@@ -386,7 +392,7 @@ SELECT pg_catalog.setval('"webTables".faq_id_seq', 9, true);
 -- Name: user_id_seq; Type: SEQUENCE SET; Schema: webTables; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"webTables".user_id_seq', 7, true);
+SELECT pg_catalog.setval('"webTables".user_id_seq', 8, true);
 
 
 --
@@ -427,6 +433,69 @@ ALTER TABLE ONLY "webTables".faqs
 
 ALTER TABLE ONLY "webTables".users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: SCHEMA "gameTables"; Type: ACL; Schema: -; Owner: postgres
+--
+
+GRANT USAGE ON SCHEMA "gameTables" TO "Webuser";
+
+
+--
+-- Name: SCHEMA "webTables"; Type: ACL; Schema: -; Owner: postgres
+--
+
+GRANT USAGE ON SCHEMA "webTables" TO "Webuser";
+
+
+--
+-- Name: TABLE armors; Type: ACL; Schema: gameTables; Owner: postgres
+--
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE "gameTables".armors TO "Webuser";
+
+
+--
+-- Name: TABLE blessings; Type: ACL; Schema: gameTables; Owner: postgres
+--
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE "gameTables".blessings TO "Webuser";
+
+
+--
+-- Name: TABLE enemys; Type: ACL; Schema: gameTables; Owner: postgres
+--
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE "gameTables".enemys TO "Webuser";
+
+
+--
+-- Name: TABLE img; Type: ACL; Schema: gameTables; Owner: postgres
+--
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE "gameTables".img TO "Webuser";
+
+
+--
+-- Name: TABLE weapons; Type: ACL; Schema: gameTables; Owner: postgres
+--
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE "gameTables".weapons TO "Webuser";
+
+
+--
+-- Name: TABLE faqs; Type: ACL; Schema: webTables; Owner: postgres
+--
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE "webTables".faqs TO "Webuser";
+
+
+--
+-- Name: TABLE users; Type: ACL; Schema: webTables; Owner: postgres
+--
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE "webTables".users TO "Webuser";
 
 
 --
