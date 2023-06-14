@@ -1,15 +1,11 @@
 #!/bin/bash
 
-# scp -r /Users/August/"OneDrive - Osloskolen"/August_IMI/August_2IMI/Arsoppgave/DatabaseBackup l2@192.168.0.209:/home/l2/
 apt update
-
-# name=l2
 
 apt install ufw
 ufw default deny incoming
 ufw default allow outgoing
 
-# apt install openssh-server -y #om bruker ikke allerede har ssh
 ufw allow OpenSSH
 ufw allow in "WWW Full"
 
@@ -45,7 +41,6 @@ ufw allow 5432
 
 apt install -y phppgadmin apache2 -y
 sed -i 's/\(^.*conf\[.extra_login_security.\] =\) true/\1 false/' /etc/phppgadmin/config.inc.php
-# sed -i 's/\(^.*conf\[.owned_only.\] =\) false/\1 true/' /etc/phppgadmin/config.inc.php
 sed -i 's/Require local/Require all granted/' /etc/apache2/conf-enabled/phppgadmin.conf
 
 -u postgres psql
@@ -68,34 +63,3 @@ systemctl restart apache2
 /etc/init.d/postgresql restart
 ufw enable
 systemctl restart networking.service
-
-# echo 'Dette skriptet laster ned det du trenger for å drifte Årsoppgaven, men du må fortsatt endre et par filer selv:
-# Filbane: /etc/network/interfaces (om du vil ha statisk ip):
-# # the loopback network interfaces
-# auto lo
-# iface lo inet loopback
-# # The primary network interface
-# auto enp2s0
-# iface enp2s0 inet static
-# 	address "din statiske ip-adresse"
-# 	netmask "velg en netmask som passer med ip-adressen"
-# 	gateway "ip-en til rutern/switch-en"
-
-
-# Filbane /etc/apache2/sites-available/Arsoppgave.conf (jeg bruker en virituel host for å kunne hoste flere netsidder samtidig):
-# <VirtualHost *:80>
-#     ServerAdmin webmaster@localhost
-#     ServerName your_domain
-#     ServerAlias www.your_domain
-#     DocumentRoot /var/www/your_domain
-    # ErrorLog ${APACHE_LOG_DIR}/error.log
-#     CustomLog ${APACHE_LOG_DIR}/access.log combined
-# </VirtualHost>'
-
-# /etc/phppgadmin/config.inc.php (må endre på premissions for å ):
-# $conf['extra_login_security'] = false;
-# $conf['owned_only'] = true;
-
-
-# /etc/apache2/conf-enabled/phppgadmin.conf:
-# endre Require local til Require all granted"
