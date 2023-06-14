@@ -14,12 +14,13 @@ public class GameInventory {
   // ArrayList<Blessing> Blessings = new ArrayList<Blessing>();
   ArrayList<Monster> Monsters = new ArrayList<Monster>();
 
-  private String[] categories = {"weapon", "item","armor", "blessing", "enemy"};
+  private String[] categories = {"weapon", "item","armor", "enemy"};
+
 
   public GameInventory(){
     for (int i = 0; i < categories.length; i++){
       try {
-        File myObj = new File("../localFiles/txt/" + categories[i] + ".txt");//henter info fra relevant fil
+        File myObj = new File("./localFiles/txt/" + categories[i] + ".txt");//henter info fra relevant fil
         Scanner myReader = new Scanner(myObj);
         while (myReader.hasNextLine()) {
           switch(categories[i]){//lager objects av all infoen i filen
