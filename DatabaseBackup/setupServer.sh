@@ -1,7 +1,6 @@
 #!/bin/bash
 
 apt update
-
 apt install ufw
 ufw default deny incoming
 ufw default allow outgoing
@@ -43,21 +42,8 @@ apt install -y phppgadmin apache2 -y
 sed -i 's/\(^.*conf\[.extra_login_security.\] =\) true/\1 false/' /etc/phppgadmin/config.inc.php
 sed -i 's/Require local/Require all granted/' /etc/apache2/conf-enabled/phppgadmin.conf
 
--u postgres psql
-ALTER USER postgres WITH PASSWORD '123';
-
-CREATE DATABASE game4;
-CREATE USER "Gameuser" WITH ENCRYPTED PASSWORD '123';
-ALTER ROLE "Gameuser" WITH LOGIN;
-CREATE USER "Webuser" WITH ENCRYPTED PASSWORD '123';
-ALTER ROLE "Webuser" WITH LOGIN;
-
-CREATE DATABASE game4;
+\i /home/l2/DatabaseBackup/DBusers.sql
 \i /home/l2/DatabaseBackup/dump.sql
-
-GRANT SELECT ON ALL TABLES IN SCHEMA "gameTables" TO Gameuser;
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA "gameTables" TO Webuser;
-exit
 
 systemctl restart apache2
 /etc/init.d/postgresql restart
