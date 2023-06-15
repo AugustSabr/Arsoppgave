@@ -1,5 +1,6 @@
 #!/bin/bash
 apacheServerName=$1
+psqlpwd=$2
 
 apt update
 apt install ufw
@@ -10,24 +11,24 @@ ufw allow OpenSSH
 ufw allow in "WWW Full"
 
 apt install apache2 -y
-mkdir -p /var/www/eksamen
-chown -R l2 /var/www/eksamen
-chmod -R 755 /var/www/eksamen
-cat >> /etc/apache2/sites-available/eksamen.conf << EOF
+mkdir -p /var/www/$apacheServerName
+chown -R l2 /var/www/$apacheServerName
+chmod -R 755 /var/www/$apacheServerName
+cat >> /etc/apache2/sites-available/$apacheServerName.conf << EOF
 <VirtualHost *:80>
     ServerAdmin webmaster@localhost
-    ServerName eksamen
-    ServerAlias www.eksamen
-    DocumentRoot /var/www/eksamen
+    ServerName $apacheServerName
+    ServerAlias www.$apacheServerName
+    DocumentRoot /var/www/$apacheServerName
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 EOF
-a2ensite eksamen.conf
+a2ensite $apacheServerName.conf
 a2dissite 000-default.conf
 
 apt-get install git git-core -y
-git clone https://github.com/AugustSabr/JavaGame_AdminSite.git /var/www/eksamen/
+git clone https://github.com/AugustSabr/JavaGame_AdminSite.git /var/www/$apacheServerName/
 
 apt install php -y
 
@@ -37,7 +38,7 @@ sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - 
 apt update
 apt-get -y install postgresql-15 -y
-sudo -u postgres psql -c "ALTER USER postgres PASSWORD '123';"
+sudo -u postgres psql -c "ALTER USER postgres PASSWORD '$psqlpwd';"
 sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" /etc/postgresql/15/main/postgresql.conf
 ufw allow 5432
 apt install -y phppgadmin apache2 -y
