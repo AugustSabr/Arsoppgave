@@ -3,7 +3,7 @@ $IP = "host=localhost";
 $Port = "port=5432";
 $database = "dbname=game4";
 $username = "user=Webuser";
-$password = "password=123";
+$password = "password=B&A3!7E#wKd4y&";
 
 $conn_string = "$IP $Port $database $username $password";
 $conn = pg_connect("$conn_string") or die ('Could not connect: ' . pg_last_error());

@@ -22,14 +22,14 @@
 <!-- The Modal -->
 <div id="myModal" class="modal" style="margin: 0px;">
   <!-- Modal content -->
-  <div class="modal-content">
+  <div id="modal-content">
     <span class="close loginORout">&times;</span>
-    <p>Vennligst logg inn:</p>
+    <h3 style="font-weight: bold;">Vennligst logg inn:</h3>
       <form method="post">
-        <label for="username">Brukernavn:</label>
-        <input type="text" name="username" /><br />
-        <label for="passord">Passord:</label>
-        <input type="password" name="passord" /><br />
+        <label for="username">Brukernavn:</label><br/>
+        <input type="text" name="username"/><br/>
+        <label for="passord">Passord:</label><br/>
+        <input type="password" name="passord"/><br/>
         
         <input type="submit" value="Logg inn" name="submit" />
       </form>
@@ -38,8 +38,8 @@
         include './php/connect.php';
         if(isset($_POST['submit'])){
           //Gjøre om POST-data til variabler
-          $usrn = pg_escape_string($conn, $_POST['username']);            
-          $pwd = pg_escape_string($conn, $_POST['passord']);
+          $usrn = trim(pg_escape_string($conn, $_POST['username']), "  ");            
+          $pwd = trim(pg_escape_string($conn, $_POST['passord']), "  ");
         
           $sql = 'SELECT * FROM "webTables"."users" where username='."'$usrn'";
         
@@ -89,7 +89,16 @@ window.onclick = function(event) {
 
 <div id="packaging">
   <h1>Velkommen til GAME sin hjemmeside</h1>
+  <div>
+    <p>Dette er en netside for spillet GAME. Under er en kort instruksvideo om hvordan du kan laste ned spillet</p>
+  <video controls style='width: 100%'>
+    <source src="./video/lastned.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  </div>
+
   <div id="faqDiv">
+    <p>Her er det kanskje svar på noen spørsmål du har. om du lurer på noe du ikke finner under kan du gjerne stille dit eget spørsmål. Husk å ikke skriv sensetiv informasjon, og bemerk at urelevante eller støtende spørmsål blir ikke besvart</p>
     <h2 id="h1">Ofte stilte spørsmål (FAQ)</h2>
     <?php
       include 'php/connect.php';
@@ -121,11 +130,11 @@ window.onclick = function(event) {
       <form id="faqAsk" method="POST" name="" action="php/insert.php">
         <input type="hidden" name="dbtable" value="faq">
         <label>Navn:</label>
-        <input type='text' name='qName' style='width: 50%' placeholder="denne informasjonen vil bli publisert så ikke del sensetiv informasjon">
+        <input type='text' name='qName' placeholder="denne informasjonen vil bli publisert så ikke del sensetiv informasjon">
         <label>Spørsmål overskrift:</label>
-        <input type='text' name='qTitle' style='width: 50%' placeholder="en overskrift til spørsmålet">
+        <input type='text' name='qTitle' placeholder="en overskrift til spørsmålet">
         <label for='type'>Spørsmål:</label>
-        <textarea name='question' cols='10' rows='5' style='width: 50%'></textarea>
+        <textarea name='question' cols='10' rows='5'></textarea>
         <button type="submit" name="insert" style='width: 100px' onclick="submitAlert()">Submit</button>
       </form>
     </div>

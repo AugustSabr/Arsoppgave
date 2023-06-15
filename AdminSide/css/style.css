@@ -8,15 +8,11 @@
   margin: auto;
 }
 
-#h1{
-  margin-bottom: 0px;
-} 
+#h1{margin-bottom: 0px;}
 
 
 /* home page */
-#modalTable #sumTr td{
-  padding-bottom: 20px;
-}
+#modalTable #sumTr td{padding-bottom: 20px;}
 
 /* The Close Button */
 .close, .loginORout{
@@ -46,7 +42,7 @@
 }
 
 /* Modal Content */
-.modal-content {
+#modal-content {
   color: black;
   background-color: #fefefe;
   margin: auto;
@@ -68,15 +64,12 @@
   margin-top: 0px;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-textarea {
-  vertical-align: bottom
-}
+textarea {vertical-align: bottom}
 
 .faqCollapsible {
   background-color: #777;
@@ -90,9 +83,7 @@ textarea {
   font-size: 15px;
 }
 
-.faqActive, .faqCollapsible:hover {
-  background-color: #555;
-}
+.faqActive, .faqCollapsible:hover {background-color: #555;}
 
 .faqContent {
   color: black;
@@ -106,6 +97,22 @@ textarea {
   display: flex;
   flex-direction: column;
 }
-#faqAsk label, #faqAsk button{
-  margin-top: 15px;
+#faqAsk label, #faqAsk button{margin-top: 15px;}
+
+#faqAsk input {width: 50%;}
+#faqAsk textarea {width: 50%; }
+
+@media (max-width: 500px) {
+  #packaging{width: 85%;}
+  #modalButton{font-size: 25px;}
+  #faqAsk input {width: 100%;}
+  #faqAsk textarea {width: 100%;}
+  #modal-content {width: 60%;}
+}
+
+@media (min-width: 500px) and (max-width: 900px) {
+  #packaging{width: 80%;}
+  #faqAsk input {width: 100%;}
+  #faqAsk textarea {width: 100%;}
+  #modal-content {width: 50%;}
 }

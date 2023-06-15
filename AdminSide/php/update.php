@@ -2,7 +2,7 @@
   session_start();
   include 'connect.php';
   if(!$_SESSION["privileges"] == "all" && !$_SESSION["privileges"] == "web" && !$_SESSION["privileges"] == "game"){
-    header("Location: index.php");
+    header("Location: ../index.php");
   }
   if (isset($_POST["action"])){
     $dbtable = $_POST['dbtable'];
@@ -17,6 +17,10 @@
         $effectExists = pg_num_rows(pg_query($conn, "SELECT column_name FROM information_schema.columns WHERE table_name='".$dbtable."s' and column_name='".$dbtable."Effect';"));
         $damageExists = pg_num_rows(pg_query($conn, "SELECT column_name FROM information_schema.columns WHERE table_name='".$dbtable."s' and column_name='".$dbtable."Damage';"));
         $healthExists = pg_num_rows(pg_query($conn, "SELECT column_name FROM information_schema.columns WHERE table_name='".$dbtable."s' and column_name='".$dbtable."Health';"));
+        $speedExists = pg_num_rows(pg_query($conn, "SELECT column_name FROM information_schema.columns WHERE table_name='".$dbtable."s' and column_name='speed';"));
+        $pathExists = pg_num_rows(pg_query($conn, "SELECT column_name FROM information_schema.columns WHERE table_name='".$dbtable."s' and column_name='path';"));
+        $valueExists = pg_num_rows(pg_query($conn, "SELECT column_name FROM information_schema.columns WHERE table_name='".$dbtable."s' and column_name='value';"));
+        $enduranceExists = pg_num_rows(pg_query($conn, "SELECT column_name FROM information_schema.columns WHERE table_name='".$dbtable."s' and column_name='endurance';"));
 
         $type = pg_escape_string($conn, $_POST[$dbtable.'Type']);
         $sql = 'UPDATE "gameTables".'.$dbtable.'s SET "'.$dbtable.'Type" = '."'$type' WHERE id='$id';";
@@ -35,6 +39,22 @@
         if($healthExists != 0){
           $health =  pg_escape_string($conn, $_POST[$dbtable.'Health']);
           $sql .= 'UPDATE "gameTables".'.$dbtable.'s SET "'.$dbtable.'Health" = '."'$health' WHERE id='$id';";
+        }
+        if($speedExists != 0){
+          $speed =  pg_escape_string($conn, $_POST['speed']);
+          $sql .= 'UPDATE "gameTables".'.$dbtable.'s SET speed = '."'$speed' WHERE id='$id';";
+        }
+        if($pathExists != 0){
+          $path =  pg_escape_string($conn, $_POST['path']);
+          $sql .= 'UPDATE "gameTables".'.$dbtable.'s SET path = '."'$path' WHERE id='$id';";
+        }
+        if($valueExists != 0){
+          $value =  pg_escape_string($conn, $_POST['value']);
+          $sql .= 'UPDATE "gameTables".'.$dbtable.'s SET value = '."'$value' WHERE id='$id';";
+        }
+        if($enduranceExists != 0){
+          $endurance =  pg_escape_string($conn, $_POST['endurance']);
+          $sql .= 'UPDATE "gameTables".'.$dbtable.'s SET endurance = '."'$endurance' WHERE id='$id';";
         }
       }
     } else if($dbtable == 'user'){
