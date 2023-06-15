@@ -13,11 +13,11 @@ public class UpdateLocalFiles {
   // info-en du trenger for å koble til database;
   private String ip = "84.215.89.206";
   private String port = "5432";
-  private String username = "Webuser";
+  private String username = "Gameuser";
   private String password = "123";
   private String database = "game4";
 
-  private String[] categories = {"weapon", "armor", "blessing", "enemy"};
+  private String[] categories = {"weapon", "armor", "enemy"};
   
   public UpdateLocalFiles(){
     try {
@@ -65,13 +65,6 @@ public class UpdateLocalFiles {
           if(tierExists != false){
             array.add(result.getString(categories[i] + "Tier"));
           }
-
-
-
-
-
-
-
         }
 
         //lager og skriver i en fil
