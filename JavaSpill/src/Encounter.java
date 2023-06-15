@@ -329,12 +329,14 @@ public class Encounter {
     int playerHealth = player.getHealth();
     int damage = (int)Math.max(0, newMonster.getTotalDamage()* 1-(player.getTotalDefence()/100.0));
     playerHealth -=  damage;
+    playerHealth = Math.max(0, playerHealth);
     player.changeHealth(playerHealth);
     if(playerHealth > 0){
       ui.mainTextArea.setText("The " + newMonster.getName() + " attacks the " + player.getName() + " and deals " + damage + " damage.");
       turnPlayer();
     }else{// death screen
       ui.mainTextArea.setText("The " + newMonster.getName() + " attacks the " + player.getName() + " and deals " + damage + " damage.\n" + player.getName() + " was slayed.\nGame over\n\n\n\n\n:(");
+      
       key.z = "";
       key.x = "";
       key.c = "";
