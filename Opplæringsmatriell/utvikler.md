@@ -1,16 +1,16 @@
 # Utvikiler manual
 Om du skal sette opp prosjektet selv har jeg gjort det enkelt for deg. Alt du trenger er å ha en debian pc med openssh-server. Tekst omringet av square brackets: [] er tekst du må fylle in selv
-- Last ned github repositoriet, og pakk det ut
-- Åpne cmd og bruk SCP til å Kopierere mappen "DatabaseBackup" i repositoriet til home directory til debian brukeren: 
+- Last ned github repositoriet, og pakk det ut på en maskin som ikke er server-pc-en.
+- Åpne cmd og bruk SCP til å Kopierere mappen "DatabaseBackup" i repositoriet, til home directory til debian brukeren: 
 ~~~
 scp -r [filbanen_Til_Mapen] [Debian_Brukeren]@[IPen_Til_Maskinen]:/home/[Debian_Brukeren]/
 ~~~
-- Logg inn på maskinen (kan bruke ssh)
+- Logg inn på maskinen (kan bruke ssh).
 - Logg in som root user:
 ~~~
 sudo su
 ~~~
-- Gi scriptet tillatelse til å gjøre endringer
+- Gi scriptet tillatelse til å gjøre endringer:
 ~~~
 chmod 755 DatabaseBackup/setupServer.sh
 sed -i -e 's/\r$//' DatabaseBackup/setupServer.sh
