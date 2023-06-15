@@ -14,7 +14,7 @@ public class UpdateLocalFiles {
   private String ip = "84.215.89.206";
   private String port = "5432";
   private String username = "Gameuser";
-  private String password = "123";
+  private String password = "K3A*M5Y3!*iP^7";
   private String database = "game4";
 
   private String[] categories = {"weapon", "armor", "enemy"};
