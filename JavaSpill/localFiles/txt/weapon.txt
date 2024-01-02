@@ -1,4 +1,4 @@
-stick
+stick4
 stick.png
 10
 10

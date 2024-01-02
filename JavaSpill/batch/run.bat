@@ -6,6 +6,6 @@ echo this is for reading error messages, and will close automatically after you 
 echo(
 
 cd C:\game
-java -cp lib\mysql-connector-j-8.0.31.jar;classes Game
+java -cp lib\postgresql-42.6.0.jar;classes Game
 
 exit
