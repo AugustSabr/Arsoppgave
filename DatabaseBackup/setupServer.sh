@@ -40,13 +40,15 @@ apt update
 apt-get -y install postgresql-15 -y
 sudo -u postgres psql -c "ALTER USER postgres PASSWORD '$psqlpwd';"
 sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" /etc/postgresql/15/main/postgresql.conf
-ufw allow 5432
+ufw allow 5432--
 apt install -y phppgadmin apache2 -y
 
 sed -i 's/\(^.*conf\[.extra_login_security.\] =\) true/\1 false/' /etc/phppgadmin/config.inc.php
 sed -i 's/Require local/Require all granted/' /etc/apache2/conf-enabled/phppgadmin.conf
 
 sed -i 's/scram-sha-256/trust/' /etc/postgresql/15/main/pg_hba.conf
+sed -i 's/peer/md5/' /etc/postgresql/15/main/pg_hba.conf
+sed -i 's/md5/trust/' /etc/postgresql/15/main/pg_hba.conf
 sed -i 's#127.0.0.1/32#0.0.0.0/0#' /etc/postgresql/15/main/pg_hba.conf
 sudo service postgresql restart
 
